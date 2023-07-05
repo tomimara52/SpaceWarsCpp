@@ -2,7 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
-#include "RenderWindow.hpp"
+#include "RenderWindow.h"
 
 int main(int argc, char* args[]) {
 	if (SDL_Init(SDL_INIT_VIDEO) > 0) 
@@ -12,6 +12,20 @@ int main(int argc, char* args[]) {
 		std::cout << "IMG_Init FAILED WITH ERROR: " << SDL_GetError() << "\n";
 
 	RenderWindow window("Game v1", 500, 500);
+
+	bool gameRunning{ true };
+
+	SDL_Event event;
+	
+	while (gameRunning) {
+		while (SDL_PollEvent(&event)) {
+			if (event.type == SDL_QUIT)
+				gameRunning = false;
+		}
+	}
+	
+	window.cleanUp();
+	SDL_Quit();
 	
 	return 0;
 }

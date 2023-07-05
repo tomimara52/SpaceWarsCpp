@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-#include "RenderWindow.hpp"
+#include "RenderWindow.h"
 
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
 	: window{ NULL }, renderer{ NULL } {
@@ -15,4 +15,8 @@ RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
 		          << SDL_GetError() << "\n";
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+}
+
+void RenderWindow::cleanUp() {
+	SDL_DestroyWindow(window);
 }
