@@ -13,6 +13,8 @@ int main(int argc, char* args[]) {
 
 	RenderWindow window("Game v1", 500, 500);
 
+	SDL_Texture* star = window.loadTexture("res/gfx/star.png");
+
 	bool gameRunning{ true };
 
 	SDL_Event event;
