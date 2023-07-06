@@ -24,6 +24,9 @@ int main(int argc, char* args[]) {
 			if (event.type == SDL_QUIT)
 				gameRunning = false;
 		}
+		window.clear();
+		window.render(star);
+		window.display();
 	}
 	
 	window.cleanUp();
