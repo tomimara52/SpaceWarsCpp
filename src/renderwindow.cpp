@@ -4,6 +4,7 @@
 
 
 #include "RenderWindow.h"
+#include "Entity.h"
 
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
 	: window{ NULL }, renderer{ NULL } {
@@ -31,8 +32,16 @@ void RenderWindow::clear() {
 	SDL_RenderClear(renderer);
 }
 
-void RenderWindow::render(SDL_Texture* p_tex) {
-	SDL_RenderCopy(renderer, p_tex, NULL, NULL);
+void RenderWindow::render(Entity& p_entity) {
+	SDL_Rect src{ p_entity.getCurrentFrame() };
+	
+	SDL_Rect dst;
+	dst.x = p_entity.getX() * 4;
+	dst.y = p_entity.getY() * 4;
+	dst.w = p_entity.getCurrentFrame().w * 4;
+	dst.h = p_entity.getCurrentFrame().h * 4;
+
+	SDL_RenderCopy(renderer, p_entity.getTex(), &src, &dst);
 }
 
 void RenderWindow::display() {

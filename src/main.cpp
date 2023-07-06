@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "RenderWindow.h"
+#include "Entity.h"
 
 int main(int argc, char* args[]) {
 	if (SDL_Init(SDL_INIT_VIDEO) > 0) 
@@ -11,9 +12,9 @@ int main(int argc, char* args[]) {
 	if (!IMG_Init(IMG_INIT_PNG))
 		std::cout << "IMG_Init FAILED WITH ERROR: " << SDL_GetError() << "\n";
 
-	RenderWindow window("Game v1", 500, 500);
+	RenderWindow window("Game v1", 1280, 720);
 
-	SDL_Texture* star = window.loadTexture("res/gfx/star.png");
+	Entity face{ 100, 100, window.loadTexture("res/gfx/face.png") };
 
 	bool gameRunning{ true };
 
@@ -25,7 +26,7 @@ int main(int argc, char* args[]) {
 				gameRunning = false;
 		}
 		window.clear();
-		window.render(star);
+		window.render(face);
 		window.display();
 	}
 	
