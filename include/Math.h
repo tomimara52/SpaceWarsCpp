@@ -30,6 +30,16 @@ public:
 		return newVec;
 	}
 
+	void operator+=(Vector2<T>& other) {
+		x = x + other.x;
+		y = y + other.y;
+	}
+
+	void operator-=(Vector2<T>& other) {
+		x = x - other.x;
+		y = y - other.y;
+	}
+
 	void print() const {
 		std::cout << '(' << x << ", " << y << ")\n";
 	}
