@@ -1,4 +1,4 @@
-FLAGS = -Wall -c -I include
+FLAGS = -std=c++20 -Wall -c -I include
 HEADERS := $(wildcard src/*.h)
 SOURCES := $(wildcard src/*.cpp)
 LIBS = -lSDL2main -lSDL2 -lSDL2_image 
