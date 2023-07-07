@@ -49,9 +49,11 @@ public:
 	}
 
 	void normalize() {
-		T norm = this->norm();
-		x = x / norm;
-		y = y / norm;
+		if (x != 0 || y != 0) {
+			T norm = this->norm();
+			x = x / norm;
+			y = y / norm;
+		}
 	}
 
 	T x;
