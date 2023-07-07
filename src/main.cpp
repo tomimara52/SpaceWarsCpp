@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <vector>
 
 #include "RenderWindow.h"
 #include "Entity.h"
@@ -12,9 +13,17 @@ int main(int argc, char* args[]) {
 	if (!IMG_Init(IMG_INIT_PNG))
 		std::cout << "IMG_Init FAILED WITH ERROR: " << SDL_GetError() << "\n";
 
-	RenderWindow window("Game v1", 1280, 720);
+	RenderWindow window("Game v1", 600, 600);
 
-	Entity face{ 100, 100, window.loadTexture("res/gfx/face.png") };
+	SDL_Texture* faceTex = window.loadTexture("res/gfx/face.png");
+
+	std::vector<Entity> entities{ Entity{ 0, 0, faceTex },
+								  Entity{ 0, 33, faceTex },
+								  Entity{ 0, 66, faceTex }
+								};
+
+	entities.push_back(Entity{ 0, 99, faceTex });
+		
 
 	bool gameRunning{ true };
 
@@ -26,7 +35,11 @@ int main(int argc, char* args[]) {
 				gameRunning = false;
 		}
 		window.clear();
-		window.render(face);
+
+		for (Entity e : entities) {
+			window.render(e);
+		}
+		
 		window.display();
 	}
 	
