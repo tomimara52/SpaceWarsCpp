@@ -5,6 +5,7 @@
 
 #include "RenderWindow.h"
 #include "Entity.h"
+#include "Utils.h"
 
 int main(int argc, char* args[]) {
 	if (SDL_Init(SDL_INIT_VIDEO) > 0) 
@@ -39,6 +40,8 @@ int main(int argc, char* args[]) {
 		for (Entity e : entities) {
 			window.render(e);
 		}
+
+		std::cout << utils::hireTimeInSeconds() << '\n';
 		
 		window.display();
 	}
