@@ -16,6 +16,20 @@ public:
 	Vector2(T x, T y)
 		: x{ x }, y{ y } { }
 
+	Vector2<T> operator+(Vector2<T>& other) {
+		Vector2<T> newVec{};
+		newVec.x = this->x + other.x;
+		newVec.y = this->y + other.y;
+		return newVec;
+	}
+
+	Vector2<T> operator-(Vector2<T>& other) {
+		Vector2<T> newVec{};
+		newVec.x = this->x - other.x;
+		newVec.y = this->y - other.y;
+		return newVec;
+	}
+
 	void print() const {
 		std::cout << '(' << x << ", " << y << ")\n";
 	}
