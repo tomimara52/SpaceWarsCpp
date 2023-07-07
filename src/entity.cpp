@@ -1,21 +1,28 @@
-#include "Entity.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-Entity::Entity(float p_x, float p_y, SDL_Texture* p_tex)
-	: x{ p_x }, y{ p_y }, tex{ p_tex } {
+#include "Entity.h"
+#include "Math.h"
+
+
+Entity::Entity(Vector2<float> pos, SDL_Texture* tex)
+	: pos{ pos }, tex{ tex } {
 	currentFrame.x = 0;
 	currentFrame.y = 0;
 	currentFrame.w = 32;
 	currentFrame.h = 32;
 }
 
-float Entity::getX() {
-	return x;
+Entity::Entity(float x, float y, SDL_Texture* tex)
+	: pos{ Vector2<float>{ x, y } }, tex{ tex } {
+	currentFrame.x = 0;
+	currentFrame.y = 0;
+	currentFrame.w = 32;
+	currentFrame.h = 32;
 }
 
-float Entity::getY() {
-	return y;
+Vector2<float>& Entity::getPos() {
+	return pos;
 }
 
 

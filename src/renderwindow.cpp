@@ -3,6 +3,7 @@
 #include <iostream>
 
 
+#include "Math.h"
 #include "RenderWindow.h"
 #include "Entity.h"
 
@@ -35,9 +36,10 @@ void RenderWindow::clear() {
 void RenderWindow::render(Entity& p_entity) {
 	SDL_Rect src{ p_entity.getCurrentFrame() };
 	
+	Vector2<float> dstVec{ p_entity.getPos() };
 	SDL_Rect dst;
-	dst.x = p_entity.getX() * 2;
-	dst.y = p_entity.getY() * 2;
+	dst.x = dstVec.x * 2;
+	dst.y = dstVec.y * 2;
 	dst.w = p_entity.getCurrentFrame().w * 2;
 	dst.h = p_entity.getCurrentFrame().h * 2;
 
