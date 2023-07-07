@@ -11,7 +11,7 @@ public:
 	Vector2<float>& getPos();
 	SDL_Rect getCurrentFrame();
 	SDL_Texture* getTex();
-private:
+protected:
 	Vector2<float> pos;
 	SDL_Rect currentFrame;
 	SDL_Texture* tex;
