@@ -30,8 +30,15 @@ int main(int argc, char* args[]) {
 	bool gameRunning{ true };
 
 	SDL_Event event;
-	
+
+	double deltaTime{};
+
 	while (gameRunning) {
+		
+		deltaTime = manager.updateDeltaTime();
+
+		std::cout << deltaTime << '\n';
+
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT)
 				gameRunning = false;
@@ -41,7 +48,7 @@ int main(int argc, char* args[]) {
 
 		player.setEvents(manager.getP1Events());
 
-		player.simulate();
+		player.simulate(deltaTime);
 		
 		window.clear();
 
@@ -54,6 +61,7 @@ int main(int argc, char* args[]) {
 		window.display();
 
 		manager.resetEvents();
+
 
 		/*
 		for (size_t i{}; i < 1000000; ++i) {

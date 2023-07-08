@@ -15,7 +15,7 @@ void Player::setEvents(uint_fast8_t newEvents) {
 	events = newEvents;
 }	
 
-void Player::simulate() {
+void Player::simulate(double deltaTime) {
 	dir = Vector2<float>{ 0, 0 };
 	if (events & DOWN) {
 		Vector2<float> down{ 0.0f, 1.0f };

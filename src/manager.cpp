@@ -6,7 +6,7 @@
 #include "Constants.h"
 
 Manager::Manager()
-	: p1Events{} { }    
+	: p1Events{}, deltaTime{}, prevTime{}, prevPrevTime{} { }    
 
 void Manager::handleInput() {
 	const uint_fast8_t* kbdState{ SDL_GetKeyboardState(NULL) };
@@ -34,4 +34,19 @@ void Manager::resetEvents() {
 
 uint_fast8_t Manager::getP1Events() {
 	return p1Events;
+}
+
+double Manager::updateDeltaTime() {
+	prevPrevTime = prevTime;
+	prevTime = SDL_GetPerformanceCounter();
+
+	double freq = (double)SDL_GetPerformanceFrequency();
+	
+	deltaTime = (prevTime - prevPrevTime) / freq;
+
+	return deltaTime;
+}
+
+double Manager::getDeltaTime() {
+	return deltaTime;
 }

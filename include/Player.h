@@ -10,7 +10,7 @@ class Player : public Entity {
 public:
 	Player(Vector2<float> pos, Vector2<float> dir, SDL_Texture* tex);
 	Player(float p_x, float p_y, float d_x, float d_y, SDL_Texture* tex);
-	void simulate();
+	void simulate(double deltaTime);
 	Vector2<float> dir;
 	void setEvents(uint_fast8_t newEvents);
 private:
