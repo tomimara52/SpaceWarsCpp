@@ -24,12 +24,7 @@ int main(int argc, char* args[]) {
 
 	InputHandler handler{ player };
 
-	std::vector<Entity> entities{ Entity{ 0, 0, faceTex },
-								  Entity{ 0, 33, faceTex },
-								  Entity{ 0, 66, faceTex },
-								};
-
-	entities.push_back(Entity{ 0, 99, faceTex });
+	std::vector<Entity*> entities{ &player };
 
 	bool gameRunning{ true };
 
@@ -43,20 +38,15 @@ int main(int argc, char* args[]) {
 
 		handler.update();
 
-		//player.dir.print();
-		//player.getPos().print();
-
 		player.simulate();
 		
 		window.clear();
 
 		window.render(player);
 
-		for (Entity e : entities) {
-			window.render(e);
+		for (Entity* e : entities) {
+			window.render(*e);
 		}
-
-		//std::cout << utils::hireTimeInSeconds() << '\n';
 		
 		window.display();
 	}
