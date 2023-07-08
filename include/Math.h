@@ -40,6 +40,10 @@ public:
 		y = y - other.y;
 	}
 
+	Vector2<T> operator*(T scalar) {
+		return Vector2<float>{ x*scalar, y*scalar };
+	}
+
 	void print() const {
 		std::cout << '(' << x << ", " << y << ")\n";
 	}
