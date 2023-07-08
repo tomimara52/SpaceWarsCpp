@@ -6,9 +6,15 @@
 #include "Constants.h"
 
 Manager::Manager()
-	: p1Events{}, deltaTime{}, prevTime{}, prevPrevTime{} { }    
+    : p1Events{}, deltaTime{}, prevTime{}, prevPrevTime{},
+      gameRunning{ true } { }
 
-void Manager::handleInput() {
+void Manager::handleEvent(SDL_Event& event) {
+	if (event.type == SDL_QUIT)
+		gameRunning = false;
+}
+
+void Manager::handleKeyboard() {
 	const uint_fast8_t* kbdState{ SDL_GetKeyboardState(NULL) };
 
 	if (kbdState[SDL_SCANCODE_D]) {
@@ -49,4 +55,8 @@ double Manager::updateDeltaTime() {
 
 double Manager::getDeltaTime() {
 	return deltaTime;
+}
+
+bool Manager::isGameRunning() {
+	return gameRunning;
 }

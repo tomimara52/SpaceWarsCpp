@@ -1,12 +1,15 @@
 #pragma once
 
+#include <SDL2/SDL.h> 
 #include <cstdint>
 
 class Manager {
 public:
 	Manager();
 
-	void handleInput();
+	void handleKeyboard();
+
+	void handleEvent(SDL_Event&);
 
 	void resetEvents();
 
@@ -15,9 +18,12 @@ public:
 	double updateDeltaTime();
 
 	double getDeltaTime();
+
+	bool isGameRunning();
 private:
 	uint_fast8_t p1Events;
 	double deltaTime;
 	uint64_t prevTime;
 	uint64_t prevPrevTime;
+	bool gameRunning;
 };

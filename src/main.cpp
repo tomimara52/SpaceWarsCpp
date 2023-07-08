@@ -27,22 +27,19 @@ int main(int argc, char* args[]) {
 
 	std::vector<Entity*> entities{ &player };
 
-	bool gameRunning{ true };
-
 	SDL_Event event;
 
 	double deltaTime{};
 
-	while (gameRunning) {
+	while (manager.isGameRunning()) {
 		
 		deltaTime = manager.updateDeltaTime();
 
 		while (SDL_PollEvent(&event)) {
-			if (event.type == SDL_QUIT)
-				gameRunning = false;
+			manager.handleEvent(event);
 		}
 
-		manager.handleInput();
+		manager.handleKeyboard();
 
 		player.setEvents(manager.getP1Events());
 
