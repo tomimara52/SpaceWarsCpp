@@ -37,8 +37,6 @@ int main(int argc, char* args[]) {
 		
 		deltaTime = manager.updateDeltaTime();
 
-		std::cout << deltaTime << '\n';
-
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT)
 				gameRunning = false;
@@ -61,13 +59,6 @@ int main(int argc, char* args[]) {
 		window.display();
 
 		manager.resetEvents();
-
-
-		/*
-		for (size_t i{}; i < 1000000; ++i) {
-			double d = sqrt(sin(cos(tan(i))));
-		}
-		*/
 	}
 	
 	window.cleanUp();

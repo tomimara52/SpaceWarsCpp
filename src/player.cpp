@@ -37,6 +37,7 @@ void Player::simulate(double deltaTime) {
 		dir += up;
 	}
 	dir.normalize();
+	dir = dir * deltaTime * 50;
 
-	pos += dir;
+	pos = pos + dir;
 }
