@@ -41,7 +41,7 @@ public:
 	}
 
 	Vector2<T> operator*(T scalar) {
-		return Vector2<float>{ x*scalar, y*scalar };
+		return Vector2<T>{ x*scalar, y*scalar };
 	}
 
 	void print() const {
