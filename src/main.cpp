@@ -1,12 +1,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <cmath>
 #include <iostream>
 #include <vector>
 
 #include "RenderWindow.h"
 #include "Entity.h"
 #include "Player.h"
-#include "InputHandler.h"
+#include "Manager.h"
 
 int main(int argc, char* args[]) {
 	if (SDL_Init(SDL_INIT_VIDEO) > 0) 
@@ -22,7 +23,7 @@ int main(int argc, char* args[]) {
 
 	Player player{ 100, 100, 0, 0, faceTex };
 
-	InputHandler handler{ player };
+	Manager manager{ };
 
 	std::vector<Entity*> entities{ &player };
 
@@ -36,7 +37,9 @@ int main(int argc, char* args[]) {
 				gameRunning = false;
 		}
 
-		handler.update();
+		manager.handleInput();
+
+		player.setEvents(manager.getP1Events());
 
 		player.simulate();
 		
@@ -49,6 +52,14 @@ int main(int argc, char* args[]) {
 		}
 		
 		window.display();
+
+		manager.resetEvents();
+
+		/*
+		for (size_t i{}; i < 1000000; ++i) {
+			double d = sqrt(sin(cos(tan(i))));
+		}
+		*/
 	}
 	
 	window.cleanUp();

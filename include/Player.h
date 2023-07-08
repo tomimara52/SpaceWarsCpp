@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <cstdint>
 
 #include "Math.h"
 #include "Entity.h"
@@ -11,4 +12,7 @@ public:
 	Player(float p_x, float p_y, float d_x, float d_y, SDL_Texture* tex);
 	void simulate();
 	Vector2<float> dir;
+	void setEvents(uint_fast8_t newEvents);
+private:
+	uint_fast8_t events;
 };
