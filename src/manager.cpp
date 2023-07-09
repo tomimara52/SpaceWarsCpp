@@ -4,10 +4,12 @@
 #include "Manager.h"
 #include "Math.h"
 #include "Constants.h"
+#include "Player.h"
 
-Manager::Manager()
-    : p1Events{}, deltaTime{}, prevTime{}, prevPrevTime{},
-      gameRunning{ true } { }
+Manager::Manager(RenderWindow window)
+	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
+	  collisionables{ }, deltaTime{ }, prevTime{ }, prevPrevTime{ },
+	  p1Events{ } { }
 
 void Manager::handleEvent(SDL_Event& event) {
 	if (event.type == SDL_QUIT)
@@ -59,4 +61,42 @@ double Manager::getDeltaTime() {
 
 bool Manager::isGameRunning() {
 	return gameRunning;
+}
+
+void Manager::addEntity(Entity* e) {
+	entities.push_back(e);
+}
+
+void Manager::addPlayer(Player* p) {
+	players.push_back(p);
+}
+
+void Manager::addCollisionable(Entity* e) {
+	collisionables.push_back(e);
+}
+
+void Manager::update() {
+	this->handleKeyboard();
+
+	(players[0])->setEvents(p1Events);
+
+	for (Entity* e : entities) {
+		e->simulate(deltaTime);
+	}
+
+	// handle collision in collisionables
+
+
+	this->resetEvents();
+}
+
+void Manager::render() {
+
+	window.clear();
+
+	for (Entity* e : entities) {
+		window.render(*e);
+	}
+
+	window.display();
 }

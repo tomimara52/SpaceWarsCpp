@@ -2,10 +2,15 @@
 
 #include <SDL2/SDL.h> 
 #include <cstdint>
+#include <vector>
+
+#include "Entity.h"
+#include "Player.h"
+#include "RenderWindow.h"
 
 class Manager {
 public:
-	Manager();
+	Manager(RenderWindow window);
 
 	void handleKeyboard();
 
@@ -20,10 +25,24 @@ public:
 	double getDeltaTime();
 
 	bool isGameRunning();
+
+	void addEntity(Entity* e);
+
+	void addPlayer(Player* p);
+
+	void addCollisionable(Entity* e);
+
+	void update();
+
+	void render();
 private:
-	uint_fast8_t p1Events;
+	bool gameRunning;
+	RenderWindow window;
+	std::vector<Entity*> entities;
+	std::vector<Player*> players;
+	std::vector<Entity*> collisionables;
 	double deltaTime;
 	uint64_t prevTime;
 	uint64_t prevPrevTime;
-	bool gameRunning;
+	uint_fast8_t p1Events;
 };

@@ -22,37 +22,24 @@ int main(int argc, char* args[]) {
 
 	Player player{ 100, 100, 0, 0, faceTex };
 
-	Manager manager{ };
-
-	std::vector<Entity*> entities{ &player };
+	Manager manager{ window };
+	manager.addEntity(&player);
+	manager.addPlayer(&player);
+	manager.addCollisionable(&player);
 
 	SDL_Event event;
 
-	double deltaTime{};
-
 	while (manager.isGameRunning()) {
-		
-		deltaTime = manager.updateDeltaTime();
+
+		manager.updateDeltaTime();
 
 		while (SDL_PollEvent(&event)) {
 			manager.handleEvent(event);
 		}
 
-		manager.handleKeyboard();
+		manager.update();
 
-		player.setEvents(manager.getP1Events());
-
-		player.simulate(deltaTime);
-		
-		window.clear();
-
-		for (Entity* e : entities) {
-			window.render(*e);
-		}
-		
-		window.display();
-
-		manager.resetEvents();
+		manager.render();
 	}
 	
 	window.cleanUp();
