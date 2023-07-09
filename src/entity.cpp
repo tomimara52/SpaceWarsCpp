@@ -31,3 +31,6 @@ SDL_Rect Entity::getCurrentFrame() {
 SDL_Texture* Entity::getTex() {
 	return tex;
 }
+
+void Entity::simulate(double dTime) {
+}

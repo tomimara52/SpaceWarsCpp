@@ -12,6 +12,7 @@ public:
 	Vector2<posType>& getPos();
 	SDL_Rect getCurrentFrame();
 	SDL_Texture* getTex();
+	virtual void simulate(posType deltaTime);
 protected:
 	Vector2<posType> pos;
 	SDL_Rect currentFrame;
