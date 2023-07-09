@@ -47,8 +47,6 @@ int main(int argc, char* args[]) {
 		
 		window.clear();
 
-		window.render(player);
-
 		for (Entity* e : entities) {
 			window.render(*e);
 		}
