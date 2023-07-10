@@ -18,3 +18,5 @@ private:
 	double vel;
 	uint_fast8_t events;
 };
+
+const double ACCELERATION = 60.0;

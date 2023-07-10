@@ -34,5 +34,12 @@ void Player::simulate(double deltaTime) {
 	}
 	dir.normalize();
 
-	pos += dir * 50 * deltaTime;
+	if (dir.isZero())
+		vel = 20;
+
+	vel += (ACCELERATION/2) * deltaTime;
+	pos += dir * vel * deltaTime;
+	vel += (ACCELERATION/2) * deltaTime;
+	if (vel > 200)
+		vel = 200;
 }
