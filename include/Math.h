@@ -16,31 +16,31 @@ public:
 	Vector2(T x, T y)
 		: x{ x }, y{ y } { }
 
-	Vector2<T> operator+(Vector2<T>& other) {
+	Vector2<T> operator+(const Vector2<T>& other) const {
 		Vector2<T> newVec{};
 		newVec.x = this->x + other.x;
 		newVec.y = this->y + other.y;
 		return newVec;
 	}
 
-	Vector2<T> operator-(Vector2<T>& other) {
+	Vector2<T> operator-(const Vector2<T>& other) const {
 		Vector2<T> newVec{};
 		newVec.x = this->x - other.x;
 		newVec.y = this->y - other.y;
 		return newVec;
 	}
 
-	void operator+=(Vector2<T>& other) {
+	void operator+=(const Vector2<T>& other) {
 		x = x + other.x;
 		y = y + other.y;
 	}
 
-	void operator-=(Vector2<T>& other) {
+	void operator-=(const Vector2<T>& other) {
 		x = x - other.x;
 		y = y - other.y;
 	}
 
-	Vector2<T> operator*(T scalar) {
+	Vector2<T> operator*(T scalar) const {
 		return Vector2<T>{ x*scalar, y*scalar };
 	}
 
