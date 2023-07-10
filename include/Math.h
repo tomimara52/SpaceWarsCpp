@@ -60,6 +60,10 @@ public:
 		}
 	}
 
+	bool isZero() const {
+		return x == 0.0 && y == 0.0;
+	}
+
 	T x;
 	T y;
 };
