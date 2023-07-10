@@ -33,17 +33,17 @@ void RenderWindow::clear() {
 	SDL_RenderClear(renderer);
 }
 
-void RenderWindow::render(Entity& p_entity) {
-	SDL_Rect src{ p_entity.getCurrentFrame() };
+void RenderWindow::render(Entity& entity) {
+	SDL_Rect src{ entity.getCurrentFrame() };
 	
-	Vector2<double> dstVec{ p_entity.getPos() };
+	Vector2<double> dstVec{ entity.getPos() };
 	SDL_Rect dst;
 	dst.x = dstVec.x * 2;
 	dst.y = dstVec.y * 2;
-	dst.w = p_entity.getCurrentFrame().w * 2;
-	dst.h = p_entity.getCurrentFrame().h * 2;
+	dst.w = entity.getCurrentFrame().w * 2;
+	dst.h = entity.getCurrentFrame().h * 2;
 
-	SDL_RenderCopy(renderer, p_entity.getTex(), &src, &dst);
+	SDL_RenderCopy(renderer, entity.getTex(), &src, &dst);
 }
 
 void RenderWindow::display() {
