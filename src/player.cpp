@@ -42,3 +42,7 @@ void Player::simulate(double deltaTime) {
 		}
 	}
 }
+
+double Player::getDir() const {
+	return dir;
+}

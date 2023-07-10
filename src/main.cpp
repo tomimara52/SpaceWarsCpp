@@ -23,7 +23,6 @@ int main(int argc, char* args[]) {
 	Player player{ 100, 100, 0, faceTex };
 
 	Manager manager{ window };
-	manager.addEntity(&player);
 	manager.addPlayer(&player);
 	manager.addCollisionable(&player);
 

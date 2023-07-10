@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <numbers>
 
 
 #include "Math.h"
@@ -44,6 +45,25 @@ void RenderWindow::render(Entity& entity) {
 	dst.h = entity.getCurrentFrame().h * 2;
 
 	SDL_RenderCopy(renderer, entity.getTex(), &src, &dst);
+}
+
+void RenderWindow::render(Player& player) {
+	SDL_Rect src{ player.getCurrentFrame() };
+	
+	Vector2<double> dstVec{ player.getPos() };
+	SDL_Rect dst;
+	dst.x = dstVec.x * 2;
+	dst.y = dstVec.y * 2;
+	dst.w = player.getCurrentFrame().w * 2;
+	dst.h = player.getCurrentFrame().h * 2;
+
+	double dir = (player.getDir() * 180 / std::numbers::pi) + 90;
+	/*
+	  dir = ( p_dir + (pi/2) ) * (180/pi)	this transforms radians to degrees
+	  = (p_dir * (180 / pi)) + 90
+	*/
+
+	SDL_RenderCopyEx(renderer, player.getTex(), &src, &dst, dir, NULL, SDL_FLIP_NONE);
 }
 
 void RenderWindow::display() {

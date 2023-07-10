@@ -12,7 +12,7 @@ public:
 	Player(double p_x, double p_y, double dir, SDL_Texture* tex);
 	void simulate(double deltaTime) override;
 	void setEvents(uint_fast8_t newEvents);
-
+	double getDir() const;
 private:
 	double dir;
 	double vel;
@@ -22,4 +22,4 @@ private:
 const double ACCELERATION = 80.0;
 const double MIN_SPEED = 40.0;
 const double MAX_SPEED = 200.0;
-const double ROT_SPEED = 30.0;
+const double ROT_SPEED = 5.0;
