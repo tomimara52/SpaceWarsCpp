@@ -35,11 +35,11 @@ void Player::simulate(double deltaTime) {
 	dir.normalize();
 
 	if (dir.isZero())
-		vel = 20;
+		vel = MIN_SPEED;
 
 	vel += (ACCELERATION/2) * deltaTime;
 	pos += dir * vel * deltaTime;
 	vel += (ACCELERATION/2) * deltaTime;
-	if (vel > 200)
-		vel = 200;
+	if (vel > MAX_SPEED)
+		vel = MAX_SPEED;
 }

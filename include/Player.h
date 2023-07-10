@@ -19,4 +19,6 @@ private:
 	uint_fast8_t events;
 };
 
-const double ACCELERATION = 60.0;
+const double ACCELERATION = 80.0;
+const double MIN_SPEED = 40.0;
+const double MAX_SPEED = 200.0;
