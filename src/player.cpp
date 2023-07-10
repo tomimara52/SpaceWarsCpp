@@ -18,25 +18,21 @@ void Player::setEvents(uint_fast8_t newEvents) {
 void Player::simulate(double deltaTime) {
 	dir = Vector2<double>{ };
 	if (events & DOWN) {
-		Vector2<double> down{ 0.0f, 1.0f };
-		dir += down;
+		dir += Vector2<double>{ 0.0, 1.0 };
 	}
 
 	if (events & RIGHT) {
-		Vector2<double> right{ 1.0f, 0.0f };
-		dir += right;
+		dir += Vector2<double>{ 1.0, 0.0 };
 	}
 
 	if (events & LEFT) {
-		Vector2<double> left{ -1.0f, 0.0f };
-		dir += left;
+		dir += Vector2<double>{ -1.0, 0.0 };
 	}
 
 	if (events & UP) {
-		Vector2<double> up{ 0.0f, -1.0f };
-		dir += up;
+		dir += Vector2<double>{ 0.0, -1.0 };
 	}
 	dir.normalize();
 
-	pos = pos + dir;
+	pos += dir * 50 * deltaTime;
 }
