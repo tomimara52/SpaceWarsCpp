@@ -17,10 +17,24 @@ void Manager::handleEvent(SDL_Event& event) {
 }
 
 void Manager::handleKeyboard() {
-	const uint_fast8_t* kbdState{ SDL_GetKeyboardState(NULL) };
+	const uint8_t* kbdState{ SDL_GetKeyboardState(NULL) };
 
 	if (kbdState[SDL_SCANCODE_W]) {
+		if (p1Events & FORWARD) {
+			p1Events = p1Events & (~RESET_VEL);
+		} else {
+			p1Events = p1Events | RESET_VEL;
+		}
 		p1Events = p1Events | FORWARD;
+		p1Events = p1Events & (~STOP_FORWARD);
+	} else {
+		p1Events = p1Events & (~RESET_VEL);
+		if (p1Events & FORWARD) {
+			p1Events = p1Events | STOP_FORWARD;
+		} else {
+			p1Events = p1Events & (~STOP_FORWARD);
+		}
+		p1Events = p1Events & (~FORWARD);
 	}
 }
 
@@ -65,7 +79,7 @@ void Manager::addCollisionable(Entity* e) {
 
 void Manager::update() {
 	this->handleKeyboard();
-
+	
 	(players[0])->setEvents(p1Events);
 
 	for (Entity* e : entities) {
@@ -75,7 +89,7 @@ void Manager::update() {
 	// handle collision in collisionables
 
 
-	this->resetEvents();
+	//this->resetEvents();
 }
 
 void Manager::render() {

@@ -12,9 +12,9 @@ class Manager {
 public:
 	Manager(RenderWindow window);
 
-	void handleKeyboard();
-
 	void handleEvent(SDL_Event&);
+
+	void handleKeyboard();
 
 	void resetEvents();
 

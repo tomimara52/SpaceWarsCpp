@@ -16,6 +16,7 @@ public:
 	double getDir() const;
 private:
 	double dir;
+	double moveDir;
 	double vel;
 	uint_fast8_t events;
 };
@@ -24,4 +25,4 @@ const double ACCELERATION = 80.0;
 const double MIN_SPEED = 40.0;
 const double MAX_SPEED = 200.0;
 const double ROT_SPEED = 5.0;
-const double FRICTION = 10.0;
+const double FRICTION = 50.0;
