@@ -19,14 +19,6 @@ void Player::setEvents(uint_fast8_t newEvents) {
 }	
 
 void Player::simulate(double deltaTime) {
-	if (events & FORWARD)
-		std::cout << "FORWARD ";
-	if (events & STOP_FORWARD)
-		std::cout << "STOP FORWARD ";
-	if (events & RESET_VEL)
-		std::cout << "RESET_VEL";
-	std::cout << '\n';
-
 	if (events & STOP_FORWARD)
 		moveDir = dir;
 
