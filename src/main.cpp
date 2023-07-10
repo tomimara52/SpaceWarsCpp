@@ -18,7 +18,7 @@ int main(int argc, char* args[]) {
 	RenderWindow window("Game v1", 600, 600);
 
 
-	SDL_Texture* faceTex = window.loadTexture("res/gfx/face.png");
+	SDL_Texture* faceTex = window.loadTexture("res/gfx/rocket1.png");
 
 	Player player{ 100, 100, 0, 0, faceTex };
 
