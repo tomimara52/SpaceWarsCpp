@@ -40,6 +40,12 @@ void Player::simulate(double deltaTime) {
 	vel += (ACCELERATION/2) * deltaTime;
 	pos += dir * vel * deltaTime;
 	vel += (ACCELERATION/2) * deltaTime;
+
+	/*
+	 * I split the vel increase in two to really make the movement
+	 * framerate independent. For more info: https://youtu.be/yGhfUcPjXuE?t=641
+	 */
+
 	if (vel > MAX_SPEED)
 		vel = MAX_SPEED;
 }
