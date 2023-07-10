@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <cmath>
 #include <numbers>
+#include <algorithm>
 
 #include "Constants.h"
 #include "Player.h"
@@ -18,8 +19,8 @@ void Player::setEvents(uint_fast8_t newEvents) {
 }	
 
 void Player::simulate(double deltaTime) {
+	Vector2<double> dirVector{ cos(dir), sin(dir) };
 	if (events & FORWARD) {
-		Vector2<double> dirVector{ cos(dir), sin(dir) };
 
 		vel += (ACCELERATION/2) * deltaTime;
 		pos += dirVector * vel * deltaTime;
@@ -33,7 +34,9 @@ void Player::simulate(double deltaTime) {
 			vel = MAX_SPEED;
 
 	} else {
-		vel = MIN_SPEED;
+		vel = std::max(vel - (FRICTION/2) * deltaTime, 0.0);
+		pos += dirVector * vel * deltaTime;
+		vel = std::max(vel - (FRICTION/2) * deltaTime, 0.0);
 
 		dir = dir + ROT_SPEED * deltaTime;
 		double max_angle = 2*std::numbers::pi;
