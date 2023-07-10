@@ -12,8 +12,10 @@ public:
 	Player(Vector2<posType> pos, Vector2<posType> dir, SDL_Texture* tex);
 	Player(posType p_x, posType p_y, posType d_x, posType d_y, SDL_Texture* tex);
 	void simulate(posType deltaTime) override;
-	Vector2<posType> dir;
 	void setEvents(uint_fast8_t newEvents);
+
 private:
+	Vector2<posType> dir;
+	double vel;
 	uint_fast8_t events;
 };

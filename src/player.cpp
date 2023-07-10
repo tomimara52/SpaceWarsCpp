@@ -6,7 +6,7 @@
 #include "Math.h"
 
 Player::Player(Vector2<posType> pos, Vector2<posType> dir, SDL_Texture* tex)
-	: Entity(pos, tex), dir{ dir }, events{} { }
+	: Entity(pos, tex), dir{ dir }, vel{}, events{} { }
 
 Player::Player(posType p_x, posType p_y, posType d_x, posType d_y, SDL_Texture *tex)
 	: Entity(p_x, p_y, tex), dir{ Vector2<posType>{ d_x, d_y } }, events{} { }
