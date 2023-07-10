@@ -46,3 +46,22 @@ void Player::simulate(double deltaTime) {
 double Player::getDir() const {
 	return dir;
 }
+
+void Player::render(SDL_Renderer* renderer) const {
+	SDL_Rect src{ this->getCurrentFrame() };
+	
+	Vector2<double> dstVec{ this->getPos() };
+	SDL_Rect dst;
+	dst.x = dstVec.x * 2;
+	dst.y = dstVec.y * 2;
+	dst.w = this->getCurrentFrame().w * 2;
+	dst.h = this->getCurrentFrame().h * 2;
+
+	double dirRender = (dir * 180 / std::numbers::pi) + 90;
+	/*
+	  dir = ( p_dir + (pi/2) ) * (180/pi)	this transforms radians to degrees
+	  = (p_dir * (180 / pi)) + 90
+	*/
+
+	SDL_RenderCopyEx(renderer, this->getTex(), &src, &dst, dirRender, NULL, SDL_FLIP_NONE);
+}

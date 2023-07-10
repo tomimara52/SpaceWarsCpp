@@ -24,6 +24,7 @@ int main(int argc, char* args[]) {
 
 	Manager manager{ window };
 	manager.addPlayer(&player);
+	manager.addEntity(&player);
 	manager.addCollisionable(&player);
 
 	SDL_Event event;

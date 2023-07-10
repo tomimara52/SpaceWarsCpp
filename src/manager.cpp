@@ -68,10 +68,6 @@ void Manager::update() {
 
 	(players[0])->setEvents(p1Events);
 
-	for (Player* p : players) {
-		p->simulate(deltaTime);
-	}
-
 	for (Entity* e : entities) {
 		e->simulate(deltaTime);
 	}
@@ -86,12 +82,8 @@ void Manager::render() {
 
 	window.clear();
 
-	for (Player* p : players) {
-		window.render(*p);
-	}
-
 	for (Entity* e : entities) {
-		window.render(*e);
+		e->render(window.getRenderer());	
 	}
 
 	window.display();

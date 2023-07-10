@@ -8,10 +8,11 @@ class Entity {
 public:
 	Entity(Vector2<double> pos, SDL_Texture* tex);
 	Entity(double x, double y, SDL_Texture* tex);
-	Vector2<double>& getPos();
-	SDL_Rect getCurrentFrame();
-	SDL_Texture* getTex();
+	Vector2<double> getPos() const;
+	SDL_Rect getCurrentFrame() const;
+	SDL_Texture* getTex() const;
 	virtual void simulate(double deltaTime);
+	virtual void render(SDL_Renderer* renderer) const;
 protected:
 	Vector2<double> pos;
 	SDL_Rect currentFrame;

@@ -9,9 +9,8 @@ class RenderWindow {
 public:
 	RenderWindow(const char* p_title, int p_w, int p_h);
 	SDL_Texture* loadTexture(const char* p_filepath);
+	SDL_Renderer* getRenderer();
 	void clear();
-	void render(Entity& entity);
-	void render(Player& player);
 	void display();
 	void cleanUp();
 private:
