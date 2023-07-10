@@ -5,17 +5,16 @@
 
 #include "Math.h"
 #include "Entity.h"
-#include "Constants.h"
 
 class Player : public Entity {
 public:
-	Player(Vector2<posType> pos, Vector2<posType> dir, SDL_Texture* tex);
-	Player(posType p_x, posType p_y, posType d_x, posType d_y, SDL_Texture* tex);
-	void simulate(posType deltaTime) override;
+	Player(Vector2<double> pos, Vector2<double> dir, SDL_Texture* tex);
+	Player(double p_x, double p_y, double d_x, double d_y, SDL_Texture* tex);
+	void simulate(double deltaTime) override;
 	void setEvents(uint_fast8_t newEvents);
 
 private:
-	Vector2<posType> dir;
+	Vector2<double> dir;
 	double vel;
 	uint_fast8_t events;
 };

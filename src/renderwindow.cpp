@@ -6,7 +6,6 @@
 #include "Math.h"
 #include "RenderWindow.h"
 #include "Entity.h"
-#include "Constants.h"
 
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
 	: window{ NULL }, renderer{ NULL } {
@@ -37,7 +36,7 @@ void RenderWindow::clear() {
 void RenderWindow::render(Entity& p_entity) {
 	SDL_Rect src{ p_entity.getCurrentFrame() };
 	
-	Vector2<posType> dstVec{ p_entity.getPos() };
+	Vector2<double> dstVec{ p_entity.getPos() };
 	SDL_Rect dst;
 	dst.x = dstVec.x * 2;
 	dst.y = dstVec.y * 2;

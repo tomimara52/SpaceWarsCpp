@@ -2,19 +2,18 @@
 #include <SDL2/SDL.h>
 
 #include "Math.h"
-#include "Constants.h"
 
 
 class Entity {
 public:
-	Entity(Vector2<posType> pos, SDL_Texture* tex);
-	Entity(posType x, posType y, SDL_Texture* tex);
-	Vector2<posType>& getPos();
+	Entity(Vector2<double> pos, SDL_Texture* tex);
+	Entity(double x, double y, SDL_Texture* tex);
+	Vector2<double>& getPos();
 	SDL_Rect getCurrentFrame();
 	SDL_Texture* getTex();
-	virtual void simulate(posType deltaTime);
+	virtual void simulate(double deltaTime);
 protected:
-	Vector2<posType> pos;
+	Vector2<double> pos;
 	SDL_Rect currentFrame;
 	SDL_Texture* tex;
 };

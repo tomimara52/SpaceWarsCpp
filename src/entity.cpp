@@ -4,7 +4,7 @@
 #include "Math.h"
 
 
-Entity::Entity(Vector2<posType> pos, SDL_Texture* tex)
+Entity::Entity(Vector2<double> pos, SDL_Texture* tex)
 	: pos{ pos }, tex{ tex } {
 	currentFrame.x = 0;
 	currentFrame.y = 0;
@@ -12,15 +12,15 @@ Entity::Entity(Vector2<posType> pos, SDL_Texture* tex)
 	currentFrame.h = 32;
 }
 
-Entity::Entity(posType x, posType y, SDL_Texture* tex)
-	: pos{ Vector2<posType>{ x, y } }, tex{ tex } {
+Entity::Entity(double x, double y, SDL_Texture* tex)
+	: pos{ Vector2<double>{ x, y } }, tex{ tex } {
 	currentFrame.x = 0;
 	currentFrame.y = 0;
 	currentFrame.w = 32;
 	currentFrame.h = 32;
 }
 
-Vector2<posType>& Entity::getPos() {
+Vector2<double>& Entity::getPos() {
 	return pos;
 }
 
