@@ -19,20 +19,8 @@ void Manager::handleEvent(SDL_Event& event) {
 void Manager::handleKeyboard() {
 	const uint_fast8_t* kbdState{ SDL_GetKeyboardState(NULL) };
 
-	if (kbdState[SDL_SCANCODE_D]) {
-		p1Events = p1Events | RIGHT;
-	}
-
-	if (kbdState[SDL_SCANCODE_A]) {
-		p1Events = p1Events | LEFT;
-	}
-
 	if (kbdState[SDL_SCANCODE_W]) {
-		p1Events = p1Events | UP;
-	}
-
-	if (kbdState[SDL_SCANCODE_S]) {
-		p1Events = p1Events | DOWN;
+		p1Events = p1Events | FORWARD;
 	}
 }
 

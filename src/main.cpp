@@ -20,7 +20,7 @@ int main(int argc, char* args[]) {
 
 	SDL_Texture* faceTex = window.loadTexture("res/gfx/rocket1.png");
 
-	Player player{ 100, 100, 0, 0, faceTex };
+	Player player{ 100, 100, 0, faceTex };
 
 	Manager manager{ window };
 	manager.addEntity(&player);

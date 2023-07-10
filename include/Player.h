@@ -8,13 +8,13 @@
 
 class Player : public Entity {
 public:
-	Player(Vector2<double> pos, Vector2<double> dir, SDL_Texture* tex);
-	Player(double p_x, double p_y, double d_x, double d_y, SDL_Texture* tex);
+	Player(Vector2<double> pos, double dir, SDL_Texture* tex);
+	Player(double p_x, double p_y, double dir, SDL_Texture* tex);
 	void simulate(double deltaTime) override;
 	void setEvents(uint_fast8_t newEvents);
 
 private:
-	Vector2<double> dir;
+	double dir;
 	double vel;
 	uint_fast8_t events;
 };
@@ -22,3 +22,4 @@ private:
 const double ACCELERATION = 80.0;
 const double MIN_SPEED = 40.0;
 const double MAX_SPEED = 200.0;
+const double ROT_SPEED = 30.0;

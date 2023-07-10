@@ -1,51 +1,44 @@
 #include <cstdint>
+#include <cmath>
+#include <numbers>
 
 #include "Constants.h"
 #include "Player.h"
 #include "Entity.h"
 #include "Math.h"
 
-Player::Player(Vector2<double> pos, Vector2<double> dir, SDL_Texture* tex)
+Player::Player(Vector2<double> pos, double dir, SDL_Texture* tex)
 	: Entity(pos, tex), dir{ dir }, vel{}, events{} { }
 
-Player::Player(double p_x, double p_y, double d_x, double d_y, SDL_Texture *tex)
-	: Entity(p_x, p_y, tex), dir{ Vector2<double>{ d_x, d_y } }, events{} { }
+Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
+	: Entity(p_x, p_y, tex), dir{ dir }, events{} { }
 
 void Player::setEvents(uint_fast8_t newEvents) {
 	events = newEvents;
 }	
 
 void Player::simulate(double deltaTime) {
-	dir = Vector2<double>{ };
-	if (events & DOWN) {
-		dir += Vector2<double>{ 0.0, 1.0 };
-	}
+	if (events & FORWARD) {
+		Vector2<double> dirVector{ cos(dir), sin(dir) };
 
-	if (events & RIGHT) {
-		dir += Vector2<double>{ 1.0, 0.0 };
-	}
+		vel += (ACCELERATION/2) * deltaTime;
+		pos += dirVector * vel * deltaTime;
+		vel += (ACCELERATION/2) * deltaTime;
+		/*
+		* I split the vel increase in two to really make the movement framerate
+		* independent. For more info: https://youtu.be/yGhfUcPjXuE?t=641
+		*/
 
-	if (events & LEFT) {
-		dir += Vector2<double>{ -1.0, 0.0 };
-	}
+		if (vel > MAX_SPEED)
+			vel = MAX_SPEED;
 
-	if (events & UP) {
-		dir += Vector2<double>{ 0.0, -1.0 };
-	}
-	dir.normalize();
-
-	if (dir.isZero())
+	} else {
 		vel = MIN_SPEED;
 
-	vel += (ACCELERATION/2) * deltaTime;
-	pos += dir * vel * deltaTime;
-	vel += (ACCELERATION/2) * deltaTime;
-
-	/*
-	 * I split the vel increase in two to really make the movement
-	 * framerate independent. For more info: https://youtu.be/yGhfUcPjXuE?t=641
-	 */
-
-	if (vel > MAX_SPEED)
-		vel = MAX_SPEED;
+		dir = dir + ROT_SPEED * deltaTime;
+		double max_angle = 2*std::numbers::pi;
+		if (dir >= max_angle) {
+			dir -= max_angle;
+		}
+	}
 }
