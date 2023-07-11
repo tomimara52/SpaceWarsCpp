@@ -1,13 +1,12 @@
 #pragma once
 
 #include <cmath>
-#include <concepts>
 #include <iostream>
 
 #include "Math.h"
 
 
-template <std::floating_point T>
+template <typename T>
 class Vector2 {
 public:
 	Vector2()

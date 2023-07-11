@@ -11,3 +11,5 @@ const double MIN_SPEED = 40.0;
 const double MAX_SPEED = 200.0;
 const double ROT_SPEED = 5.0;
 const double FRICTION = 50.0;
+
+const double PI = 3.14159265358979323846;

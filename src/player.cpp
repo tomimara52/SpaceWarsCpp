@@ -1,6 +1,5 @@
 #include <cstdint>
 #include <cmath>
-#include <numbers>
 #include <algorithm>
 
 #include "Constants.h"
@@ -47,7 +46,7 @@ void Player::simulate(double deltaTime) {
 		vel = std::max(vel - (FRICTION/2) * deltaTime, 0.0);
 
 		dir = dir + ROT_SPEED * deltaTime;
-		double max_angle = 2*std::numbers::pi;
+		double max_angle = 2*PI;
 		if (dir >= max_angle) {
 			dir = std::fmod(dir, max_angle);
 		}
@@ -68,7 +67,7 @@ void Player::render(SDL_Renderer* renderer) const {
 	dst.w = this->getCurrentFrame().w * 2;
 	dst.h = this->getCurrentFrame().h * 2;
 
-	double dirRender = (dir * 180 / std::numbers::pi) + 90;
+	double dirRender = (dir * 180 / PI) + 90;
 	/*
 	  dir = ( p_dir + (pi/2) ) * (180/pi)	this transforms radians to degrees
 	  = (p_dir * (180 / pi)) + 90
