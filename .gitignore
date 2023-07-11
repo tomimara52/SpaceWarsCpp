@@ -4,5 +4,5 @@ compile_commands.json
 **/*.o
 bin/debug/main
 bin/release/main
-bin/**/.gitignore
+bin/**/.gitkeep
 .cache
