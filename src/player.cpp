@@ -11,7 +11,7 @@ Player::Player(Vector2<double> pos, double dir, SDL_Texture* tex)
 	: Entity(pos, tex), dir{ dir }, moveDir{}, vel{}, events{} { }
 
 Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
-	: Entity(p_x, p_y, tex), dir{ dir }, moveDir{}, events{} { }
+	: Entity(p_x, p_y, tex), dir{ dir }, moveDir{}, vel{}, events{} { }
 
 void Player::setEvents(uint_fast8_t newEvents) {
 	events = newEvents;
