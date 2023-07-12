@@ -9,7 +9,8 @@
 #include "Manager.h"
 
 int main(int argc, char* args[]) {
-	if (SDL_Init(SDL_INIT_VIDEO) > 0) 
+
+	if (SDL_Init(SDL_INIT_EVERYTHING) > 0) 
 		std::cout << "SDL_Init FAILED WITH ERROR: " << SDL_GetError() << "\n";
 
 	if (!IMG_Init(IMG_INIT_PNG))
@@ -45,7 +46,8 @@ int main(int argc, char* args[]) {
 	window.cleanUp();
 
     IMG_Quit();
-	SDL_QuitSubSystem(SDL_INIT_VIDEO);
+    SDL_Quit();
+    
 	
 	return 0;
 }
