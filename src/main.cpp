@@ -16,7 +16,7 @@ int main(int argc, char* args[]) {
 	if (!IMG_Init(IMG_INIT_PNG))
 		std::cout << "IMG_Init FAILED WITH ERROR: " << SDL_GetError() << "\n";
 
-	RenderWindow window{ "Game v1", 600, 600 };
+	RenderWindow window{ "Game v1", 1300, 700 };
 
 
 	SDL_Texture* faceTex = window.loadTexture("res/gfx/rocket1.png");
