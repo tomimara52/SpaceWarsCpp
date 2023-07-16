@@ -16,7 +16,6 @@ public:
 	double getDir() const;
 private:
 	double dir;
-	double vel;
     Vector2<double> momentum;
 	uint_fast8_t events;
 };

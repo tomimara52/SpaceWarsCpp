@@ -20,14 +20,8 @@ void Manager::handleKeyboard() {
 	const uint8_t* kbdState{ SDL_GetKeyboardState(NULL) };
 
 	if (kbdState[SDL_SCANCODE_W]) {
-		if (p1Events & FORWARD) {
-			p1Events = p1Events & (~RESET_VEL);
-		} else {
-			p1Events = p1Events | RESET_VEL;
-		}
 		p1Events = p1Events | FORWARD;
 	} else {
-		p1Events = p1Events & (~RESET_VEL);
 		p1Events = p1Events & (~FORWARD);
 	}
 }

@@ -8,12 +8,10 @@
 #include "Math.h"
 
 Player::Player(Vector2<double> pos, double dir, SDL_Texture* tex)
-	: Entity(pos, tex), dir{ dir }, vel{},
-      momentum{}, events{} { }
+	: Entity(pos, tex), dir{ dir }, momentum{}, events{} { }
 
 Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
-	: Entity(p_x, p_y, tex), dir{ dir }, vel{},
-      momentum{}, events{} { }
+	: Entity(p_x, p_y, tex), dir{ dir }, momentum{}, events{} { }
 
 void Player::setEvents(uint_fast8_t newEvents) {
 	events = newEvents;
@@ -23,13 +21,10 @@ void Player::simulate(double deltaTime) {
 	if (events & FORWARD) {
 		Vector2<double> dirVector{ cos(dir), sin(dir) };
 
-		if (events & RESET_VEL)
-			vel = MIN_SPEED;
-
-		vel += ACCELERATION * deltaTime;
-        momentum += dirVector * vel;
+        momentum += dirVector * ACCELERATION * deltaTime;
 
         if (momentum.norm() > MAX_SPEED) {
+            std::cout << "max speed reached\n";
             momentum.normalize();  
             momentum = momentum * MAX_SPEED;
         }
