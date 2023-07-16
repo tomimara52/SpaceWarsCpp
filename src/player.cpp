@@ -8,49 +8,52 @@
 #include "Math.h"
 
 Player::Player(Vector2<double> pos, double dir, SDL_Texture* tex)
-	: Entity(pos, tex), dir{ dir }, moveDir{}, vel{}, events{} { }
+	: Entity(pos, tex), dir{ dir }, vel{},
+      momentum{}, events{} { }
 
 Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
-	: Entity(p_x, p_y, tex), dir{ dir }, moveDir{}, vel{}, events{} { }
+	: Entity(p_x, p_y, tex), dir{ dir }, vel{},
+      momentum{}, events{} { }
 
 void Player::setEvents(uint_fast8_t newEvents) {
 	events = newEvents;
 }	
 
 void Player::simulate(double deltaTime) {
-	if (events & STOP_FORWARD)
-		moveDir = dir;
-
 	if (events & FORWARD) {
 		Vector2<double> dirVector{ cos(dir), sin(dir) };
 
 		if (events & RESET_VEL)
 			vel = MIN_SPEED;
 
-		vel += (ACCELERATION/2) * deltaTime;
-		pos += dirVector * vel * deltaTime;
-		vel += (ACCELERATION/2) * deltaTime;
-		/*
-		* I split the vel increase in two to really make the movement framerate
-		* independent. For more info: https://youtu.be/yGhfUcPjXuE?t=641
-		*/
+		vel += ACCELERATION * deltaTime;
+        momentum += dirVector * vel;
 
-		if (vel > MAX_SPEED)
-			vel = MAX_SPEED;
+        if (momentum.norm() > MAX_SPEED) {
+            momentum.normalize();  
+            momentum = momentum * MAX_SPEED;
+        }
 
 	} else {
-		Vector2<double> dirVector{ cos(moveDir), sin(moveDir) };
-
-		vel = std::max(vel - (FRICTION/2) * deltaTime, 0.0);
-		pos += dirVector * vel * deltaTime;
-		vel = std::max(vel - (FRICTION/2) * deltaTime, 0.0);
+        if (!momentum.isZero()) {
+            Vector2<double> friction = momentum * (-1);
+            friction.normalize();
+            friction = friction * FRICTION * deltaTime;
+            if (friction.norm() >= momentum.norm()) {
+                momentum = Vector2<double>{ };
+            } else {
+                momentum = momentum + friction;
+            }
+        }
 
 		dir = dir + ROT_SPEED * deltaTime;
 		double max_angle = 2*PI;
 		if (dir >= max_angle) {
 			dir = std::fmod(dir, max_angle);
 		}
+
 	}
+    pos += momentum * deltaTime;
 }
 
 double Player::getDir() const {

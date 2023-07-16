@@ -26,14 +26,8 @@ void Manager::handleKeyboard() {
 			p1Events = p1Events | RESET_VEL;
 		}
 		p1Events = p1Events | FORWARD;
-		p1Events = p1Events & (~STOP_FORWARD);
 	} else {
 		p1Events = p1Events & (~RESET_VEL);
-		if (p1Events & FORWARD) {
-			p1Events = p1Events | STOP_FORWARD;
-		} else {
-			p1Events = p1Events & (~STOP_FORWARD);
-		}
 		p1Events = p1Events & (~FORWARD);
 	}
 }
