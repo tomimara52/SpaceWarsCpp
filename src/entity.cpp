@@ -46,3 +46,11 @@ void Entity::render(SDL_Renderer* renderer) const {
 
 	SDL_RenderCopy(renderer, tex, &src, &dst);
 }
+
+bool Entity::collides(Entity* other) const {
+    return false;
+}
+
+char Entity::getId() const {
+    return id;
+}

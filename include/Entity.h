@@ -13,6 +13,8 @@ public:
 	SDL_Texture* getTex() const;
 	virtual void simulate(double deltaTime);
 	virtual void render(SDL_Renderer* renderer) const;
+    virtual bool collides(Entity* other) const;
+    char getId() const;
 protected:
 	Vector2<double> pos;
 	SDL_Rect currentFrame;
