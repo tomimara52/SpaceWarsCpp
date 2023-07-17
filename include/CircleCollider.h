@@ -6,7 +6,7 @@ class CircleCollider {
 public:
     CircleCollider(Vector2<double>* pos, double radius);
 
-    bool collides(CircleCollider& other);
+    bool collides(const CircleCollider* other) const;
 
     Vector2<double>* getPos() const;
 

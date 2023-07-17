@@ -6,12 +6,12 @@
 CircleCollider::CircleCollider(Vector2<double>* pos, double radius)
     : pos{ pos }, radius{ radius } { }
 
-bool CircleCollider::collides(CircleCollider& other) {
-    Vector2<double>* otherPos = other.getPos();
+bool CircleCollider::collides(const CircleCollider* other) const {
+    Vector2<double>* otherPos = other->getPos();
 
     double distance = sqrt((pos->x - otherPos->x) * (pos->x - otherPos->x) + (pos->y - otherPos->y) * (pos->y - otherPos->y));
 
-    return radius + other.getRadius() >= distance;
+    return radius + other->getRadius() >= distance;
 }
 
 Vector2<double>* CircleCollider::getPos() const {
