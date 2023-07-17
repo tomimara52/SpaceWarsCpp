@@ -5,6 +5,7 @@
 
 #include "Math.h"
 #include "Entity.h"
+#include "CircleCollider.h"
 
 class Player : public Entity {
 public:
@@ -17,5 +18,6 @@ private:
 	double dir;
     Vector2<double> momentum;
 	uint_fast8_t events;
+    CircleCollider collider;
 };
 
