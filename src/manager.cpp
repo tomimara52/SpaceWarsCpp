@@ -98,8 +98,15 @@ void Manager::update() {
 		e->simulate(deltaTime);
 	}
 
-	// handle collision in collisionables
-
+    for (size_t i{}; i < collisionables.size(); ++i) {
+        Entity* e0{ collisionables[i] };
+        for (size_t j{ i+1 }; j < collisionables.size(); ++j) {
+            Entity* e1{ collisionables[j] };
+            if (e0->collides(e1)) {
+                std::cout << "COLLISION\n";
+            }
+        }
+    }
 
 	//this->resetEvents();
 }
