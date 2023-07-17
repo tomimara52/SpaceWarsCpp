@@ -24,14 +24,18 @@ int main(int argc, char* args[]) {
 
 	Player player1{ 100, 100, 0, rocketTex1};
 	Player player2{ 500, 100, 0, rocketTex2};
+    /*
 	Player player3{ 500, 0, 0, rocketTex2};
 	Player player4{ 250, 100, 0, rocketTex1};
+    */
 
 	Manager manager{ window };
 	manager.addPlayer(&player1);
 	manager.addPlayer(&player2);
+    /*
 	manager.addPlayer(&player3);
 	manager.addPlayer(&player4);
+    */
 
 	SDL_Event event;
 
