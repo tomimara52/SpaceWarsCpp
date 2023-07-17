@@ -5,7 +5,7 @@ CircleCollider::CircleCollider(Vector2<double>& pos)
     : pos{ pos } { }
 
 bool CircleCollider::collides(CircleCollider& other) {
-    return true;
+    return false;
 }
 
 Vector2<double>& CircleCollider::getPos() const {
