@@ -8,7 +8,7 @@
 #include "Math.h"
 
 Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
-	: Entity(p_x, p_y, tex), dir{ dir }, momentum{}, events{} { }
+	: Entity(p_x, p_y, tex, 'p'), dir{ dir }, momentum{}, events{} { }
 
 void Player::setEvents(uint_fast8_t newEvents) {
 	events = newEvents;
