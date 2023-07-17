@@ -24,7 +24,6 @@ void Player::simulate(double deltaTime) {
         momentum += dirVector * ACCELERATION * deltaTime;
 
         if (momentum.norm() > MAX_SPEED) {
-            std::cout << "max speed reached\n";
             momentum.normalize();  
             momentum = momentum * MAX_SPEED;
         }
