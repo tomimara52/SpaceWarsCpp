@@ -55,6 +55,6 @@ char Entity::getId() const {
     return id;
 }
 
-CircleCollider* Entity::getCollider() const {
+const CircleCollider* Entity::getCollider() const {
     return NULL;
 }

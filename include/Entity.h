@@ -15,7 +15,7 @@ public:
 	virtual void render(SDL_Renderer* renderer) const;
     virtual bool collides(Entity* other) const;
     char getId() const;
-    virtual CircleCollider* getCollider() const;
+    virtual const CircleCollider* getCollider() const;
 protected:
 	Vector2<double> pos;
 	SDL_Rect currentFrame;
