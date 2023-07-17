@@ -39,10 +39,10 @@ void Entity::render(SDL_Renderer* renderer) const {
 	SDL_Rect src{ currentFrame };
 	
 	SDL_Rect dst;
-	dst.x = pos.x * 2;
-	dst.y = pos.y * 2;
-	dst.w = currentFrame.w * 2;
-	dst.h = currentFrame.h * 2;
+	dst.x = pos.x;
+	dst.y = pos.y;
+	dst.w = currentFrame.w;
+	dst.h = currentFrame.h;
 
 	SDL_RenderCopy(renderer, tex, &src, &dst);
 }
