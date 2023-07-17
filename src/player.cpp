@@ -2,6 +2,7 @@
 #include <cmath>
 #include <algorithm>
 
+#include "CircleCollider.h"
 #include "Constants.h"
 #include "Player.h"
 #include "Entity.h"
@@ -69,4 +70,8 @@ void Player::render(SDL_Renderer* renderer) const {
 	*/
 
 	SDL_RenderCopyEx(renderer, this->getTex(), &src, &dst, dirRender, NULL, SDL_FLIP_NONE);
+}
+
+const CircleCollider* Player::getCollider() const {
+    return &collider;
 }

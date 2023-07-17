@@ -14,6 +14,7 @@ public:
 	void render(SDL_Renderer* renderer) const override;
 	void setEvents(uint_fast8_t newEvents);
 	double getDir() const;
+    const CircleCollider* getCollider() const override;
 private:
 	double dir;
     Vector2<double> momentum;
