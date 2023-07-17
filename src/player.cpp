@@ -7,9 +7,6 @@
 #include "Entity.h"
 #include "Math.h"
 
-Player::Player(Vector2<double> pos, double dir, SDL_Texture* tex)
-	: Entity(pos, tex), dir{ dir }, momentum{}, events{} { }
-
 Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
 	: Entity(p_x, p_y, tex), dir{ dir }, momentum{}, events{} { }
 

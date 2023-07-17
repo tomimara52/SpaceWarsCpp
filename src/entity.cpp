@@ -3,15 +3,6 @@
 #include "Entity.h"
 #include "Math.h"
 
-
-Entity::Entity(Vector2<double> pos, SDL_Texture* tex)
-	: pos{ pos }, tex{ tex }, id{ } {
-	currentFrame.x = 0;
-	currentFrame.y = 0;
-	currentFrame.w = 32;
-	currentFrame.h = 32;
-}
-
 Entity::Entity(double x, double y, SDL_Texture* tex)
 	: pos{ Vector2<double>{ x, y } }, tex{ tex }, id{ } {
 	currentFrame.x = 0;

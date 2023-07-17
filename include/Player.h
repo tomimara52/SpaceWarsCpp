@@ -8,7 +8,6 @@
 
 class Player : public Entity {
 public:
-	Player(Vector2<double> pos, double dir, SDL_Texture* tex);
 	Player(double p_x, double p_y, double dir, SDL_Texture* tex);
 	void simulate(double deltaTime) override;
 	void render(SDL_Renderer* renderer) const override;
