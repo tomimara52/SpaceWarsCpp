@@ -58,3 +58,7 @@ char Entity::getId() const {
 const CircleCollider* Entity::getCollider() const {
     return NULL;
 }
+
+void Entity::setPos(Vector2<double> newPos) {
+    pos = newPos;
+}

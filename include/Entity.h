@@ -9,6 +9,7 @@ public:
 	Entity(double x, double y, SDL_Texture* tex);
 	Entity(double x, double y, SDL_Texture* tex, char id);
 	Vector2<double> getPos() const;
+	void setPos(Vector2<double> newPos);
 	SDL_Rect getCurrentFrame() const;
 	SDL_Texture* getTex() const;
 	virtual void simulate(double deltaTime);
