@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "CircleCollider.h"
 #include "Math.h"
 
@@ -5,7 +7,11 @@ CircleCollider::CircleCollider(Vector2<double>* pos, double radius)
     : pos{ pos }, radius{ radius } { }
 
 bool CircleCollider::collides(CircleCollider& other) {
-    return false;
+    Vector2<double>* otherPos = other.getPos();
+
+    double distance = sqrt((pos->x - otherPos->x) * (pos->x - otherPos->x) + (pos->y - otherPos->y) * (pos->y - otherPos->y));
+
+    return radius + other.getRadius() >= distance;
 }
 
 Vector2<double>* CircleCollider::getPos() const {
