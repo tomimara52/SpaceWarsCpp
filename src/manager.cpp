@@ -102,8 +102,44 @@ void Manager::update() {
         Entity* e0{ collisionables[i] };
         for (size_t j{ i+1 }; j < collisionables.size(); ++j) {
             Entity* e1{ collisionables[j] };
-            if (e0->collides(e1)) {
-                std::cout << "COLLISION\n";
+            if (e0->collides(e1) && e0->getId() == 'p' && e1->getId() == 'p') {
+                auto p0{ dynamic_cast<Player*>(e0) };
+                auto p1{ dynamic_cast<Player*>(e1) };
+                Vector2<double> m0{ p0->getMomentum() };            
+                Vector2<double> m1{ p1->getMomentum() };            
+                Vector2<double> pos0{ p0->getPos() };            
+                Vector2<double> pos1{ p1->getPos() };            
+                double radius{ p0->getCollider()->getRadius() };
+
+                Vector2<double> dist{ pos0 - pos1 };
+                Vector2<double> radiusVec{ dist * (1 / dist.norm()) * radius };
+                Vector2<double> correction{ dist - radiusVec * 2 };
+                correction = correction * 0.5;
+
+                p0->setPos(pos0 - correction);
+                p1->setPos(pos1 + correction);
+
+                double vel{ (m0 - m1).norm() };
+                radiusVec.normalize();
+
+                p0->setMomentum(m0 - correction * vel);
+                p1->setMomentum(m1 + correction * vel);
+
+                /*
+                Vector2<double> vel{ (m0 - m1) };
+                //double vel{ (m0 - m1).norm() * 0.8 };
+                radiusVec.normalize();
+                p0->setMomentum(radiusVec * (-1) * vel );
+                p1->setMomentum(radiusVec * vel );
+
+                std::cout << deltaTime << "COLLISION\n";
+                double d{ vel.x * radiusVec.x + vel.y * radiusVec.y };
+                Vector2<double> p{ radiusVec.x * d, radiusVec.y * d };
+                
+                p0->setMomentum(vel - p * 0.6);
+                p1->setMomentum(vel + p * 0.6);
+                */
+
             }
         }
     }
