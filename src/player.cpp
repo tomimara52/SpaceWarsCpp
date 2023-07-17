@@ -10,7 +10,7 @@
 
 Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
 	: Entity(p_x, p_y, tex, 'p'), dir{ dir }, momentum{}, events{},
-      collider{ CircleCollider{ &pos, 32 } } { }
+      collider{ CircleCollider{ &pos, 16 } } { }
 
 void Player::setEvents(uint_fast8_t newEvents) {
 	events = newEvents;
