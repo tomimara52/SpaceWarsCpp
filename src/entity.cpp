@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include "Math.h"
+#include "CircleCollider.h"
 
 Entity::Entity(double x, double y, SDL_Texture* tex)
 	: pos{ Vector2<double>{ x, y } }, tex{ tex }, id{ } {
@@ -52,4 +53,8 @@ bool Entity::collides(Entity* other) const {
 
 char Entity::getId() const {
     return id;
+}
+
+CircleCollider* Entity::getCollider() const {
+    return NULL;
 }
