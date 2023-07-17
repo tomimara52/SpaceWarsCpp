@@ -16,6 +16,7 @@ public:
 	double getDir() const;
     bool collides(Entity* other) const override;
     const CircleCollider* getCollider() const override;
+    Vector2<double> getMomentum() const;
     void setMomentum(Vector2<double>);
 private:
 	double dir;

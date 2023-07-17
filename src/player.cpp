@@ -84,6 +84,10 @@ const CircleCollider* Player::getCollider() const {
     return &collider;
 }
 
+Vector2<double> Player::getMomentum() const {
+    return momentum;
+}
+
 void Player::setMomentum(Vector2<double> newMomentum) {
     momentum = newMomentum;
 }
