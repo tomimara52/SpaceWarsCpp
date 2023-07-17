@@ -11,6 +11,14 @@ Entity::Entity(double x, double y, SDL_Texture* tex)
 	currentFrame.h = 32;
 }
 
+Entity::Entity(double x, double y, SDL_Texture* tex, char id)
+	: pos{ Vector2<double>{ x, y } }, tex{ tex }, id{ id } {
+	currentFrame.x = 0;
+	currentFrame.y = 0;
+	currentFrame.w = 32;
+	currentFrame.h = 32;
+}
+
 Vector2<double> Entity::getPos() const {
 	return pos;
 }

@@ -7,6 +7,7 @@
 class Entity {
 public:
 	Entity(double x, double y, SDL_Texture* tex);
+	Entity(double x, double y, SDL_Texture* tex, char id);
 	Vector2<double> getPos() const;
 	SDL_Rect getCurrentFrame() const;
 	SDL_Texture* getTex() const;
