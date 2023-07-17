@@ -83,3 +83,7 @@ bool Player::collides(Entity* other) const {
 const CircleCollider* Player::getCollider() const {
     return &collider;
 }
+
+void Player::setMomentum(Vector2<double> newMomentum) {
+    momentum = newMomentum;
+}
