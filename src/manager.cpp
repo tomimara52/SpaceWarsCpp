@@ -9,7 +9,7 @@
 Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
 	  collisionables{ }, deltaTime{ }, prevTime{ }, prevPrevTime{ },
-	  p1Events{ } { }
+	  pEvents{ } { }
 
 void Manager::handleEvent(SDL_Event& event) {
 	if (event.type == SDL_QUIT)
@@ -17,21 +17,40 @@ void Manager::handleEvent(SDL_Event& event) {
 }
 
 void Manager::handleKeyboard() {
+    size_t n_players = players.size();
 	const uint8_t* kbdState{ SDL_GetKeyboardState(NULL) };
 
-	if (kbdState[SDL_SCANCODE_W]) {
-		p1Events = p1Events | FORWARD;
-	} else {
-		p1Events = p1Events & (~FORWARD);
-	}
-}
+    if (n_players >= 1) {
+        if (kbdState[SDL_SCANCODE_W]) {
+            pEvents[0] = pEvents[0] | FORWARD;
+        } else {
+            pEvents[0] = pEvents[0] & (~FORWARD);
+        }
+    }
 
-void Manager::resetEvents() {
-	p1Events = 0;
-}
+    if (n_players >= 2) {
+        if (kbdState[SDL_SCANCODE_T]) {
+            pEvents[1] = pEvents[1] | FORWARD;
+        } else {
+            pEvents[1] = pEvents[1] & (~FORWARD);
+        }
+    }
 
-uint_fast8_t Manager::getP1Events() {
-	return p1Events;
+    if (n_players >= 3) {
+        if (kbdState[SDL_SCANCODE_U]) {
+            pEvents[2] = pEvents[2] | FORWARD;
+        } else {
+            pEvents[2] = pEvents[2] & (~FORWARD);
+        }
+    }
+
+    if (n_players >= 4) {
+        if (kbdState[SDL_SCANCODE_P]) {
+            pEvents[3] = pEvents[3] | FORWARD;
+        } else {
+            pEvents[3] = pEvents[3] & (~FORWARD);
+        }
+    }
 }
 
 double Manager::updateDeltaTime() {
@@ -68,7 +87,9 @@ void Manager::addCollisionable(Entity* e) {
 void Manager::update() {
 	this->handleKeyboard();
 	
-	(players[0])->setEvents(p1Events);
+    for (size_t i{}; i < players.size(); ++i) {
+        (players[i])->setEvents(pEvents[i]);
+    }
 
 	for (Entity* e : entities) {
 		e->simulate(deltaTime);
