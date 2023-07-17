@@ -72,6 +72,14 @@ void Player::render(SDL_Renderer* renderer) const {
 	SDL_RenderCopyEx(renderer, this->getTex(), &src, &dst, dirRender, NULL, SDL_FLIP_NONE);
 }
 
+bool Player::collides(Entity* other) const {
+    const CircleCollider* otherCollider = other->getCollider();
+
+    if (otherCollider == NULL) return false;
+
+    return collider.collides(otherCollider);
+}
+
 const CircleCollider* Player::getCollider() const {
     return &collider;
 }

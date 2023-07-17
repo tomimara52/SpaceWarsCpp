@@ -14,6 +14,7 @@ public:
 	void render(SDL_Renderer* renderer) const override;
 	void setEvents(uint_fast8_t newEvents);
 	double getDir() const;
+    bool collides(Entity* other) const override;
     const CircleCollider* getCollider() const override;
 private:
 	double dir;
