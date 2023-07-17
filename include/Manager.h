@@ -16,10 +16,6 @@ public:
 
 	void handleKeyboard();
 
-	void resetEvents();
-
-	uint_fast8_t getP1Events();
-
 	double updateDeltaTime();
 
 	double getDeltaTime();

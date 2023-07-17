@@ -78,6 +78,9 @@ void Manager::addEntity(Entity* e) {
 
 void Manager::addPlayer(Player* p) {
 	players.push_back(p);
+    this->addEntity(p);
+    this->addCollisionable(p);
+    pEvents.push_back(0);
 }
 
 void Manager::addCollisionable(Entity* e) {
