@@ -3,7 +3,7 @@
 #include "Math.h"
 
 class CircleCollider {
-    CircleCollider(Vector2<double>& pos, char id);
+    CircleCollider(Vector2<double>& pos);
 
     bool collides(CircleCollider& other);
 
@@ -12,5 +12,4 @@ class CircleCollider {
     char getId() const;
 private:
     Vector2<double>& pos;
-    char id;
 };

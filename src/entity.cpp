@@ -5,7 +5,7 @@
 
 
 Entity::Entity(Vector2<double> pos, SDL_Texture* tex)
-	: pos{ pos }, tex{ tex } {
+	: pos{ pos }, tex{ tex }, id{ } {
 	currentFrame.x = 0;
 	currentFrame.y = 0;
 	currentFrame.w = 32;
@@ -13,7 +13,7 @@ Entity::Entity(Vector2<double> pos, SDL_Texture* tex)
 }
 
 Entity::Entity(double x, double y, SDL_Texture* tex)
-	: pos{ Vector2<double>{ x, y } }, tex{ tex } {
+	: pos{ Vector2<double>{ x, y } }, tex{ tex }, id{ } {
 	currentFrame.x = 0;
 	currentFrame.y = 0;
 	currentFrame.w = 32;
@@ -45,4 +45,8 @@ void Entity::render(SDL_Renderer* renderer) const {
 	dst.h = currentFrame.h * 2;
 
 	SDL_RenderCopy(renderer, tex, &src, &dst);
+}
+
+bool Entity::collides(Entity& other) const {
+    return false;
 }
