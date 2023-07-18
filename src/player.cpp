@@ -58,10 +58,10 @@ void Player::render(SDL_Renderer* renderer) const {
 	
 	Vector2<double> dstVec{ this->getPos() };
 	SDL_Rect dst;
-	dst.x = dstVec.x * 2;
-	dst.y = dstVec.y * 2;
-	dst.w = this->getCurrentFrame().w * 2;
-	dst.h = this->getCurrentFrame().h * 2;
+	dst.x = dstVec.x;
+	dst.y = dstVec.y;
+	dst.w = this->getCurrentFrame().w;
+	dst.h = this->getCurrentFrame().h;
 
 	double dirRender = (dir * 180 / PI) + 90;
 	/*
