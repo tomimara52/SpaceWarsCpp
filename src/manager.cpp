@@ -125,21 +125,6 @@ void Manager::update() {
                 p0->setMomentum(m0 - correction * vel);
                 p1->setMomentum(m1 + correction * vel);
 
-                /*
-                Vector2<double> vel{ (m0 - m1) };
-                //double vel{ (m0 - m1).norm() * 0.8 };
-                radiusVec.normalize();
-                p0->setMomentum(radiusVec * (-1) * vel );
-                p1->setMomentum(radiusVec * vel );
-
-                std::cout << deltaTime << "COLLISION\n";
-                double d{ vel.x * radiusVec.x + vel.y * radiusVec.y };
-                Vector2<double> p{ radiusVec.x * d, radiusVec.y * d };
-                
-                p0->setMomentum(vel - p * 0.6);
-                p1->setMomentum(vel + p * 0.6);
-                */
-
             }
         }
     }
