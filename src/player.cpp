@@ -10,7 +10,10 @@
 
 Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
 	: Entity(p_x, p_y, tex, 'p'), dir{ dir }, momentum{}, events{},
-      collider{ CircleCollider{ &pos, 16 } } { }
+      collider{ CircleCollider{ &pos, 26 } } {
+    currentFrame.h = 64;
+    currentFrame.w = 64;
+}
 
 void Player::setEvents(uint_fast8_t newEvents) {
 	events = newEvents;
@@ -73,7 +76,7 @@ void Player::render(SDL_Renderer* renderer) const {
 
     #ifdef SHOW_MOMENTUM_VECTORS
     SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
-    SDL_RenderDrawLine(renderer, pos.x + 16, pos.y + 16, pos.x + 16 + momentum.x, pos.y + 16 + momentum.y);
+    SDL_RenderDrawLine(renderer, pos.x + 32, pos.y + 32, pos.x + 32 + momentum.x, pos.y + 32 + momentum.y);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     #endif
 }
