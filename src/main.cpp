@@ -19,11 +19,12 @@ int main(int argc, char* args[]) {
 	RenderWindow window{ "Game v1", 1300, 700 };
 
 
-	SDL_Texture* rocketTex1 = window.loadTexture("res/gfx/rocket1.png");
-	SDL_Texture* rocketTex2 = window.loadTexture("res/gfx/rocket2.png");
+	SDL_Texture* rocketTex1 = window.loadTexture("res/gfx/rocket-nice-red.png");
+	SDL_Texture* rocketTex2 = window.loadTexture("res/gfx/rocket-nice-green.png");
 
 	Player player1{ 100, 100, 0, rocketTex1};
 	Player player2{ 500, 100, 0, rocketTex2};
+	Player player3{ 100, 300, 0, rocketTex2};
     /*
 	Player player3{ 500, 0, 0, rocketTex2};
 	Player player4{ 250, 100, 0, rocketTex1};
@@ -32,6 +33,7 @@ int main(int argc, char* args[]) {
 	Manager manager{ window };
 	manager.addPlayer(&player1);
 	manager.addPlayer(&player2);
+	manager.addPlayer(&player3);
     /*
 	manager.addPlayer(&player3);
 	manager.addPlayer(&player4);
