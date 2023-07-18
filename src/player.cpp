@@ -70,6 +70,12 @@ void Player::render(SDL_Renderer* renderer) const {
 	*/
 
 	SDL_RenderCopyEx(renderer, this->getTex(), &src, &dst, dirRender, NULL, SDL_FLIP_NONE);
+
+    #ifdef SHOW_MOMENTUM_VECTORS
+    SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+    SDL_RenderDrawLine(renderer, pos.x + 16, pos.y + 16, pos.x + 16 + momentum.x, pos.y + 16 + momentum.y);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    #endif
 }
 
 bool Player::collides(Entity* other) const {
