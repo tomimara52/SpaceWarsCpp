@@ -120,10 +120,10 @@ void Manager::update() {
                 p1->setPos(pos1 + correction);
 
                 double vel{ (m0 - m1).norm() };
-                radiusVec.normalize();
+                dist.normalize();
 
-                p0->setMomentum(m0 - correction * vel);
-                p1->setMomentum(m1 + correction * vel);
+                p0->setMomentum(m0 + dist * vel);
+                p1->setMomentum(m1 - dist * vel);
 
             }
         }
