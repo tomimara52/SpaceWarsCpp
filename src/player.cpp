@@ -50,6 +50,16 @@ void Player::simulate(double deltaTime) {
 
 	}
     pos += momentum * deltaTime;
+
+    if (pos.x + 32 > SCREEN_W)
+        pos.x -= SCREEN_W;
+    else if (pos.x + 32 < 0)
+        pos.x += SCREEN_W;
+
+    if (pos.y + 32 > SCREEN_H)
+        pos.y -= SCREEN_H;
+    else if (pos.y + 32 < 0)
+        pos.y += SCREEN_H;
 }
 
 double Player::getDir() const {
