@@ -20,7 +20,7 @@ void Manager::handleKeyboard() {
     size_t n_players = players.size();
 	const uint8_t* kbdState{ SDL_GetKeyboardState(NULL) };
 
-    if (n_players >= 1) {
+    if (n_players >= 1 && *(pEvents[0]) & ALIVE) {
         if (kbdState[SDL_SCANCODE_W]) {
             *(pEvents[0]) = *(pEvents[0]) | FORWARD;
         } else {
@@ -28,7 +28,7 @@ void Manager::handleKeyboard() {
         }
     }
 
-    if (n_players >= 2) {
+    if (n_players >= 2 && *(pEvents[1]) & ALIVE) {
         if (kbdState[SDL_SCANCODE_T]) {
             *(pEvents[1]) = *(pEvents[1]) | FORWARD;
         } else {
@@ -36,7 +36,7 @@ void Manager::handleKeyboard() {
         }
     }
 
-    if (n_players >= 3) {
+    if (n_players >= 3 && *(pEvents[2]) & ALIVE) {
         if (kbdState[SDL_SCANCODE_U]) {
             *(pEvents[2]) = *(pEvents[2]) | FORWARD;
         } else {
@@ -44,7 +44,7 @@ void Manager::handleKeyboard() {
         }
     }
 
-    if (n_players >= 4) {
+    if (n_players >= 4 && *(pEvents[3]) & ALIVE) {
         if (kbdState[SDL_SCANCODE_P]) {
             *(pEvents[3]) = *(pEvents[3]) | FORWARD;
         } else {

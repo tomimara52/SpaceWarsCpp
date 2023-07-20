@@ -2,7 +2,8 @@
 
 #include <cstdint>
 
-const uint8_t FORWARD =         0b00000001;
+const uint8_t ALIVE =         0b00000001;
+const uint8_t FORWARD =       0b00000010;
 
 const double ACCELERATION = 200.0;
 const double MAX_SPEED = 200.0;
