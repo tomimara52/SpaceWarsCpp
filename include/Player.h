@@ -18,6 +18,7 @@ public:
     const CircleCollider* getCollider() const override;
     Vector2<double> getMomentum() const;
     void setMomentum(Vector2<double>);
+    uint_fast8_t* getEvents();
 private:
 	double dir;
     Vector2<double> momentum;

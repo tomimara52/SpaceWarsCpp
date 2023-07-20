@@ -100,3 +100,7 @@ Vector2<double> Player::getMomentum() const {
 void Player::setMomentum(Vector2<double> newMomentum) {
     momentum = newMomentum;
 }
+
+uint_fast8_t* Player::getEvents() {
+    return &events;
+}
