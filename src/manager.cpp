@@ -101,6 +101,15 @@ void Manager::update() {
             if (e0->collides(e1) && e0->getId() == 'p' && e1->getId() == 'p') {
                 auto p0{ dynamic_cast<Player*>(e0) };
                 auto p1{ dynamic_cast<Player*>(e1) };
+
+                if (*(p0->getEvents()) & DEAD_TOUCH) {
+                    killPlayer(p1);
+                }
+
+                if (*(p1->getEvents()) & DEAD_TOUCH) {
+                    killPlayer(p0);
+                }
+
                 Vector2<double> m0{ p0->getMomentum() };            
                 Vector2<double> m1{ p1->getMomentum() };            
                 Vector2<double> pos0{ p0->getPos() };            
