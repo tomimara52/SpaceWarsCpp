@@ -2,7 +2,7 @@
 #include "CircleCollider.h"
 
 Powerup::Powerup(double x, double y, SDL_Texture *tex)
-    : Entity(x, y, tex, 'w'), collider{ CircleCollider{ &pos, 10 } } {
+    : Entity(x, y, tex, 'w'), collider{ CircleCollider{ &pos, Vector2<double>{ }, 10 } } {
     currentFrame.h = 20;
     currentFrame.w = 20;
 }
