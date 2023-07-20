@@ -31,6 +31,8 @@ public:
 	void update();
 
 	void render();
+
+    void killPlayer(Player* p);
 private:
 	bool gameRunning;
 	RenderWindow window;

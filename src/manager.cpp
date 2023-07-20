@@ -138,3 +138,21 @@ void Manager::render() {
 
 	window.display();
 }
+
+void Manager::killPlayer(Player* p) {
+    p->setEvents(0);
+
+    for (std::vector<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it) {
+        if (*it == p) {
+            entities.erase(it);
+            break;
+        }
+    }
+
+    for (std::vector<Entity*>::iterator it = collisionables.begin(); it != collisionables.end(); ++it) {
+        if (*it == p) {
+            collisionables.erase(it);
+            break;
+        }
+    }
+}
