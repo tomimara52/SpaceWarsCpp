@@ -40,5 +40,5 @@ private:
 	double deltaTime;
 	uint64_t prevTime;
 	uint64_t prevPrevTime;
-    std::vector<uint_fast8_t> pEvents;
+    std::vector<uint_fast8_t*> pEvents;
 };

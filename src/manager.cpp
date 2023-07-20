@@ -22,33 +22,33 @@ void Manager::handleKeyboard() {
 
     if (n_players >= 1) {
         if (kbdState[SDL_SCANCODE_W]) {
-            pEvents[0] = pEvents[0] | FORWARD;
+            *(pEvents[0]) = *(pEvents[0]) | FORWARD;
         } else {
-            pEvents[0] = pEvents[0] & (~FORWARD);
+            *(pEvents[0]) = *(pEvents[0]) & (~FORWARD);
         }
     }
 
     if (n_players >= 2) {
         if (kbdState[SDL_SCANCODE_T]) {
-            pEvents[1] = pEvents[1] | FORWARD;
+            *(pEvents[1]) = *(pEvents[1]) | FORWARD;
         } else {
-            pEvents[1] = pEvents[1] & (~FORWARD);
+            *(pEvents[1]) = *(pEvents[1]) & (~FORWARD);
         }
     }
 
     if (n_players >= 3) {
         if (kbdState[SDL_SCANCODE_U]) {
-            pEvents[2] = pEvents[2] | FORWARD;
+            *(pEvents[2]) = *(pEvents[2]) | FORWARD;
         } else {
-            pEvents[2] = pEvents[2] & (~FORWARD);
+            *(pEvents[2]) = *(pEvents[2]) & (~FORWARD);
         }
     }
 
     if (n_players >= 4) {
         if (kbdState[SDL_SCANCODE_P]) {
-            pEvents[3] = pEvents[3] | FORWARD;
+            *(pEvents[3]) = *(pEvents[3]) | FORWARD;
         } else {
-            pEvents[3] = pEvents[3] & (~FORWARD);
+            *(pEvents[3]) = *(pEvents[3]) & (~FORWARD);
         }
     }
 }
@@ -80,7 +80,7 @@ void Manager::addPlayer(Player* p) {
 	players.push_back(p);
     this->addEntity(p);
     this->addCollisionable(p);
-    pEvents.push_back(0);
+    pEvents.push_back(p->getEvents());
 }
 
 void Manager::addCollisionable(Entity* e) {
@@ -89,10 +89,6 @@ void Manager::addCollisionable(Entity* e) {
 
 void Manager::update() {
 	this->handleKeyboard();
-	
-    for (size_t i{}; i < players.size(); ++i) {
-        (players[i])->setEvents(pEvents[i]);
-    }
 
 	for (Entity* e : entities) {
 		e->simulate(deltaTime);
