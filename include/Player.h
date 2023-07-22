@@ -19,6 +19,7 @@ public:
     Vector2<double> getMomentum() const;
     void setMomentum(Vector2<double>);
     uint_fast8_t* getEvents();
+    void addToEvents(uint_fast8_t newEvent);
 private:
 	double dir;
     Vector2<double> momentum;

@@ -114,3 +114,7 @@ void Player::setMomentum(Vector2<double> newMomentum) {
 uint_fast8_t* Player::getEvents() {
     return &events;
 }
+
+void Player::addToEvents(uint_fast8_t newEvent) {
+    events = events | newEvent;
+}
