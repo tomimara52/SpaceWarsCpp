@@ -20,10 +20,14 @@ public:
     void setMomentum(Vector2<double>);
     uint_fast8_t* getEvents();
     void addToEvents(uint_fast8_t newEvent);
+
+    void setDeadTouchTime();
 private:
 	double dir;
     Vector2<double> momentum;
 	uint_fast8_t events;
     CircleCollider collider;
+
+    double deadTouchTime; 
 };
 

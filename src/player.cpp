@@ -60,6 +60,14 @@ void Player::simulate(double deltaTime) {
         pos.y -= SCREEN_H;
     else if (pos.y + 32 < 0)
         pos.y += SCREEN_H;
+
+    if (events & DEAD_TOUCH) {
+        deadTouchTime -= deltaTime;
+        if (deadTouchTime <= 0) {
+            deadTouchTime = 0;
+            events = events & (~DEAD_TOUCH);
+        }
+    }
 }
 
 double Player::getDir() const {
@@ -117,4 +125,8 @@ uint_fast8_t* Player::getEvents() {
 
 void Player::addToEvents(uint_fast8_t newEvent) {
     events = events | newEvent;
+}
+
+void Player::setDeadTouchTime() {
+    deadTouchTime = 5;
 }
