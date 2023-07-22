@@ -128,5 +128,5 @@ void Player::addToEvents(uint_fast8_t newEvent) {
 }
 
 void Player::setDeadTouchTime() {
-    deadTouchTime = 5;
+    deadTouchTime = DEAD_TOUCH_TIME;
 }
