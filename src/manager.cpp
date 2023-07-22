@@ -194,4 +194,5 @@ void Manager::grabDeadTouch(Player* p, Entity* powerup) {
     this->removeCollisionable(powerup);
 
     p->addToEvents(DEAD_TOUCH);
+    p->setDeadTouchTime();
 }
