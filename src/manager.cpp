@@ -151,15 +151,22 @@ void Manager::render() {
 void Manager::killPlayer(Player* p) {
     p->setEvents(0);
 
+    this->removeEntity(p);
+    this->removeCollisionable(p);
+}
+
+void Manager::removeEntity(Entity* e) {
     for (std::vector<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it) {
-        if (*it == p) {
+        if (*it == e) {
             entities.erase(it);
             break;
         }
     }
+}
 
+void Manager::removeCollisionable(Entity* e) {
     for (std::vector<Entity*>::iterator it = collisionables.begin(); it != collisionables.end(); ++it) {
-        if (*it == p) {
+        if (*it == e) {
             collisionables.erase(it);
             break;
         }

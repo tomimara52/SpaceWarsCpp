@@ -33,6 +33,10 @@ public:
 	void render();
 
     void killPlayer(Player* p);
+
+    void removeEntity(Entity* e);
+
+    void removeCollisionable(Entity* e);
 private:
 	bool gameRunning;
 	RenderWindow window;
