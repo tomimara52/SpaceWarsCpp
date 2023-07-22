@@ -20,6 +20,18 @@ void Player::setEvents(uint_fast8_t newEvents) {
 }	
 
 void Player::simulate(double deltaTime) {
+    this->move(deltaTime);
+
+    if (events & DEAD_TOUCH) {
+        deadTouchTime -= deltaTime;
+        if (deadTouchTime <= 0) {
+            deadTouchTime = 0;
+            events = events & (~DEAD_TOUCH);
+        }
+    }
+}
+
+void Player::move(double deltaTime) {
 	if (events & FORWARD) {
 		Vector2<double> dirVector{ cos(dir), sin(dir) };
 
@@ -60,14 +72,6 @@ void Player::simulate(double deltaTime) {
         pos.y -= SCREEN_H;
     else if (pos.y + 32 < 0)
         pos.y += SCREEN_H;
-
-    if (events & DEAD_TOUCH) {
-        deadTouchTime -= deltaTime;
-        if (deadTouchTime <= 0) {
-            deadTouchTime = 0;
-            events = events & (~DEAD_TOUCH);
-        }
-    }
 }
 
 double Player::getDir() const {
