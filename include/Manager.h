@@ -39,6 +39,8 @@ private:
 
     void removeCollisionable(Entity* e);
 
+    void playersCollide(Player* p0, Player* p1);
+
 	bool gameRunning;
 	RenderWindow window;
 	std::vector<Entity*> entities;

@@ -98,43 +98,21 @@ void Manager::update() {
         Entity* e0{ collisionables[i] };
         for (size_t j{ i+1 }; j < collisionables.size(); ++j) {
             Entity* e1{ collisionables[j] };
-            if (e0->collides(e1) && e0->getId() == 'p' && e1->getId() == 'p') {
+
+            char id0{ e0->getId() };
+            char id1{ e1->getId() };
+
+            if (!(e0->collides(e1)))
+                continue;
+
+            if (id0 == 'p' && id1 == 'p') {
                 auto p0{ dynamic_cast<Player*>(e0) };
                 auto p1{ dynamic_cast<Player*>(e1) };
 
-                if (*(p0->getEvents()) & DEAD_TOUCH) {
-                    killPlayer(p1);
-                }
-
-                if (*(p1->getEvents()) & DEAD_TOUCH) {
-                    killPlayer(p0);
-                }
-
-                Vector2<double> m0{ p0->getMomentum() };            
-                Vector2<double> m1{ p1->getMomentum() };            
-                Vector2<double> pos0{ p0->getPos() };            
-                Vector2<double> pos1{ p1->getPos() };            
-                double radius{ p0->getCollider()->getRadius() };
-
-                Vector2<double> dist{ pos0 - pos1 };
-                Vector2<double> radiusVec{ dist * (1 / dist.norm()) * radius };
-                Vector2<double> correction{ dist - radiusVec * 2 };
-                correction = correction * 0.5;
-
-                p0->setPos(pos0 - correction);
-                p1->setPos(pos1 + correction);
-
-                double vel{ (m0 - m1).norm() };
-                dist.normalize();
-
-                p0->setMomentum(m0 + dist * vel);
-                p1->setMomentum(m1 - dist * vel);
-
+                this->playersCollide(p0, p1);
             }
         }
     }
-
-	//this->resetEvents();
 }
 
 void Manager::render() {
@@ -171,4 +149,34 @@ void Manager::removeCollisionable(Entity* e) {
             break;
         }
     }
+}
+
+void Manager::playersCollide(Player* p0, Player* p1) {
+    if (*(p0->getEvents()) & DEAD_TOUCH) {
+        killPlayer(p1);
+    }
+
+    if (*(p1->getEvents()) & DEAD_TOUCH) {
+        killPlayer(p0);
+    }
+
+    Vector2<double> m0{ p0->getMomentum() };            
+    Vector2<double> m1{ p1->getMomentum() };            
+    Vector2<double> pos0{ p0->getPos() };            
+    Vector2<double> pos1{ p1->getPos() };            
+    double radius{ p0->getCollider()->getRadius() };
+
+    Vector2<double> dist{ pos0 - pos1 };
+    Vector2<double> radiusVec{ dist * (1 / dist.norm()) * radius };
+    Vector2<double> correction{ dist - radiusVec * 2 };
+    correction = correction * 0.5;
+
+    p0->setPos(pos0 - correction);
+    p1->setPos(pos1 + correction);
+
+    double vel{ (m0 - m1).norm() };
+    dist.normalize();
+
+    p0->setMomentum(m0 + dist * vel);
+    p1->setMomentum(m1 - dist * vel);
 }
