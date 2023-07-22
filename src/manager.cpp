@@ -110,6 +110,14 @@ void Manager::update() {
                 auto p1{ dynamic_cast<Player*>(e1) };
 
                 this->playersCollide(p0, p1);
+            } else if (id0 == 'p' && id1 == 'd') {
+                auto p{ dynamic_cast<Player*>(e0) };
+
+                this->grabDeadTouch(p, e1);
+            } else if (id0 == 'd' && id1 == 'p') {
+                auto p{ dynamic_cast<Player*>(e1) };
+
+                this->grabDeadTouch(p, e0);
             }
         }
     }
@@ -179,4 +187,11 @@ void Manager::playersCollide(Player* p0, Player* p1) {
 
     p0->setMomentum(m0 + dist * vel);
     p1->setMomentum(m1 - dist * vel);
+}
+
+void Manager::grabDeadTouch(Player* p, Entity* powerup) {
+    this->removeEntity(powerup);
+    this->removeCollisionable(powerup);
+
+    p->setEvents(*(p->getEvents()) | DEAD_TOUCH);
 }

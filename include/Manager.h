@@ -41,6 +41,8 @@ private:
 
     void playersCollide(Player* p0, Player* p1);
 
+    void grabDeadTouch(Player* p, Entity* powerup);
+
 	bool gameRunning;
 	RenderWindow window;
 	std::vector<Entity*> entities;
