@@ -4,15 +4,19 @@
 #include "CircleCollider.h"
 
 Powerup::Powerup(double x, double y, SDL_Texture *tex)
-    : Entity(x, y, tex, 'w'), collider{ CircleCollider{ &pos, Vector2<double>{ }, 10 } } {
-    currentFrame.h = 20;
-    currentFrame.w = 20;
+    : Entity(x, y, tex, 'w'), collider{ CircleCollider{ &pos, Vector2<double>{ 10, 10 }, 10 } } {
+    currentFrame.x = 21;
+    currentFrame.y = 21;
+    currentFrame.h = 22;
+    currentFrame.w = 22;
 }
 
 Powerup::Powerup(double x, double y, SDL_Texture* tex, char id) 
-    : Entity(x, y, tex, id), collider{ CircleCollider{ &pos, Vector2<double>{ }, 10 } } {
-    currentFrame.h = 20;
-    currentFrame.w = 20;
+    : Entity(x, y, tex, id), collider{ CircleCollider{ &pos, Vector2<double>{ 10, 10 }, 10 } } {
+    currentFrame.x = 21;
+    currentFrame.y = 21;
+    currentFrame.h = 22;
+    currentFrame.w = 22;
 }
 
 const CircleCollider *Powerup::getCollider() const {
