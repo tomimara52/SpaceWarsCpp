@@ -94,7 +94,19 @@ void Player::render(SDL_Renderer* renderer) const {
 	  = (p_dir * (180 / pi)) + 90
 	*/
 
-	SDL_RenderCopyEx(renderer, this->getTex(), &src, &dst, dirRender, NULL, SDL_FLIP_NONE);
+    if (events & DEAD_TOUCH) {
+        SDL_Rect dstBack;
+        dstBack.x = dstVec.x - 5;
+        dstBack.y = dstVec.y - 5;
+        dstBack.w = this->getCurrentFrame().w + 10;
+        dstBack.h = this->getCurrentFrame().h + 10;
+
+        SDL_SetTextureColorMod(tex, 0, 0, 0);
+        SDL_RenderCopyEx(renderer, tex, &src, &dstBack, dirRender, NULL, SDL_FLIP_NONE);
+        SDL_SetTextureColorMod(tex, 255, 255, 255);
+    }
+
+	SDL_RenderCopyEx(renderer, tex, &src, &dst, dirRender, NULL, SDL_FLIP_NONE);
 
     #ifdef SHOW_MOMENTUM_VECTORS
     SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
