@@ -24,7 +24,7 @@ int main(int argc, char* args[]) {
 	SDL_Texture* rocketTex1 = window.loadTexture("res/gfx/rocket-nice-red.png");
 	SDL_Texture* rocketTex2 = window.loadTexture("res/gfx/rocket-nice-green.png");
 
-    SDL_Texture* powerupTex = window.loadTexture("res/gfx/circle-red.png");
+    SDL_Texture* powerupTex = window.loadTexture("res/gfx/dead-touch.png");
 
 	Player player1{ 100, 100, 0, rocketTex1};
 	Player player2{ 500, 100, 0, rocketTex2};
