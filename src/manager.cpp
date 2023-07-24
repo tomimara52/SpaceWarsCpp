@@ -6,6 +6,7 @@
 #include "Constants.h"
 #include "Player.h"
 #include "Powerup.h"
+#include "Bullet.h"
 
 Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
@@ -13,17 +14,23 @@ Manager::Manager(RenderWindow window)
       prevPrevTime{ }, pEvents{ } {
 	SDL_Texture* rocketTex1 = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-red.png");
 	SDL_Texture* rocketTex2 = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-green.png");
-
     SDL_Texture* powerupTex = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/dead-touch.png");
+    SDL_Texture* bullTex = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/circle-red.png");
 
 	Player* player1 = new Player{ 100, 100, 0, rocketTex1};
 	Player* player2 = new Player{ 500, 100, 0, rocketTex2};
 	Player* player3 = new Player{ 100, 300, 0, rocketTex2};
 
-    Powerup* deadTouch = new Powerup{ 250, 250, powerupTex, 'd' };
+    //Powerup* deadTouch = new Powerup{ 250, 250, powerupTex, 'd' };
 
-    this->addCollisionable(deadTouch);
-    this->addEntity(deadTouch);
+    for (size_t i{}; i < 8; ++i) {
+        Bullet* bullet = new Bullet{ 250, 250, (PI*i)/4, BULLET_SPEED_0 , bullTex };
+        this->addCollisionable(bullet);
+        this->addEntity(bullet);
+    }
+
+    //this->addCollisionable(deadTouch);
+    //this->addEntity(deadTouch);
 
 	this->addPlayer(player1);
 	this->addPlayer(player2);
