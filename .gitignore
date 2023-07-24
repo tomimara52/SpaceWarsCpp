@@ -5,3 +5,4 @@ compile_commands.json
 bin/debug/main
 bin/release/main
 .cache
+vgcore*
