@@ -140,6 +140,19 @@ void Manager::update() {
             }
         }
     }
+
+    const size_t toDestroy_size = toDestroy.size();
+
+    for (size_t i{}; i < toDestroy_size; ++i) {
+        Entity* elem{ toDestroy.at(i) };
+        this->removeCollisionable(elem);
+        this->removeEntity(elem);
+
+        delete elem;
+    }
+
+    toDestroy.clear();
+
 }
 
 void Manager::render() {
@@ -209,9 +222,29 @@ void Manager::playersCollide(Player* p0, Player* p1) {
 }
 
 void Manager::grabDeadTouch(Player* p, Entity* powerup) {
-    this->removeEntity(powerup);
-    this->removeCollisionable(powerup);
+    (this->toDestroy).push_back(powerup);
 
     p->addToEvents(DEAD_TOUCH);
     p->setDeadTouchTime();
+}
+
+Manager::~Manager() {
+    const size_t players_size = players.size();
+
+    for (size_t i{}; i < players_size; ++i) {
+        Player* player{ players.at(i) };
+
+        this->removeEntity(player);
+        this->removeCollisionable(player);
+
+        delete player;
+    }
+
+    const size_t entities_size = entities.size();
+
+    for (size_t i{}; i < entities_size; ++i) {
+        delete entities.at(i);
+    }
+
+	window.cleanUp();
 }

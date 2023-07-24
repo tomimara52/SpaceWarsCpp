@@ -32,6 +32,8 @@ public:
 
 	void render();
 
+    ~Manager();
+
 private:
     void killPlayer(Player* p);
 
@@ -48,6 +50,7 @@ private:
 	std::vector<Entity*> entities;
 	std::vector<Player*> players;
 	std::vector<Entity*> collisionables;
+	std::vector<Entity*> toDestroy;
 	double deltaTime;
 	uint64_t prevTime;
 	uint64_t prevPrevTime;
