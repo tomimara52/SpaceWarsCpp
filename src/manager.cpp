@@ -280,3 +280,14 @@ void Manager::hitBullet(Player* p, Entity* bullet) {
 
     killPlayer(p);
 }
+
+void Manager::spawnBulletExplosion(Player* p, Entity* powerup) {
+    toDestroy.push_back(powerup);
+
+    Vector2<double> pos{ p->getCollider()->getPosOffsetApplied() };
+    for (size_t i{}; i < 8; ++i) {
+        Bullet* bullet = new Bullet{ pos.x , pos.y, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX]};
+        this->addCollisionable(bullet);
+        this->addEntity(bullet);
+    }
+}

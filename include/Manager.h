@@ -47,6 +47,8 @@ private:
 
     void hitBullet(Player* p, Entity* bullet);
 
+    void spawnBulletExplosion(Player* p, Entity* powerup);
+
 	bool gameRunning;
 	RenderWindow window;
 	std::vector<Entity*> entities;
