@@ -45,6 +45,8 @@ private:
 
     void grabDeadTouch(Player* p, Entity* powerup);
 
+    void hitBullet(Player* p, Entity* bullet);
+
 	bool gameRunning;
 	RenderWindow window;
 	std::vector<Entity*> entities;

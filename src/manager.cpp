@@ -150,6 +150,14 @@ void Manager::update() {
                 auto p{ dynamic_cast<Player*>(e1) };
 
                 this->grabDeadTouch(p, e0);
+            } else if (id0 == 'p' && id1 == 'b') {
+                auto p{ dynamic_cast<Player*>(e0) };
+
+                hitBullet(p, e1);
+            } else if (id0 == 'b' && id1 == 'p') {
+                auto p{ dynamic_cast<Player*>(e1) };
+
+                hitBullet(p, e0);
             }
         }
     }
@@ -260,4 +268,10 @@ Manager::~Manager() {
     }
 
     window.cleanUp();
+}
+
+void Manager::hitBullet(Player* p, Entity* bullet) {
+    (this->toDestroy).push_back(bullet);
+
+    killPlayer(p);
 }
