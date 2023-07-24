@@ -8,23 +8,28 @@
 #include "Powerup.h"
 #include "Bullet.h"
 
+static const int P0_TEX = 0;
+static const int P1_TEX = 1;
+static const int DEAD_TOUCH_TEX = 2;
+static const int BULLET_TEX = 3;
+
 Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
 	  collisionables{ }, toDestroy{ }, deltaTime{ }, prevTime{ },
       prevPrevTime{ }, pEvents{ } {
-	SDL_Texture* rocketTex1 = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-red.png");
-	SDL_Texture* rocketTex2 = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-green.png");
-    SDL_Texture* powerupTex = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/dead-touch.png");
-    SDL_Texture* bullTex = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/circle-red.png");
+	textures[P0_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-red.png");
+	textures[P1_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-green.png");
+    textures[DEAD_TOUCH_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/dead-touch.png");
+    textures[BULLET_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/circle-red.png");
 
-	Player* player1 = new Player{ 100, 100, 0, rocketTex1};
-	Player* player2 = new Player{ 500, 100, 0, rocketTex2};
-	Player* player3 = new Player{ 100, 300, 0, rocketTex2};
+	Player* player1 = new Player{ 100, 100, 0, textures[P0_TEX]};
+	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX]};
+	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX]};
 
     //Powerup* deadTouch = new Powerup{ 250, 250, powerupTex, 'd' };
 
     for (size_t i{}; i < 8; ++i) {
-        Bullet* bullet = new Bullet{ 250, 250, (PI*i)/4, BULLET_SPEED_0 , bullTex };
+        Bullet* bullet = new Bullet{ 250, 250, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX]};
         this->addCollisionable(bullet);
         this->addEntity(bullet);
     }
