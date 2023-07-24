@@ -26,20 +26,23 @@ Manager::Manager(RenderWindow window)
 	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX]};
 	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX]};
 
-    //Powerup* deadTouch = new Powerup{ 250, 250, powerupTex, 'd' };
+    Powerup* bExplosion = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'x' };
 
+    /*
     for (size_t i{}; i < 8; ++i) {
         Bullet* bullet = new Bullet{ 250, 250, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX]};
         this->addCollisionable(bullet);
         this->addEntity(bullet);
     }
+    */
 
-    //this->addCollisionable(deadTouch);
-    //this->addEntity(deadTouch);
+    this->addCollisionable(bExplosion);
+    this->addEntity(bExplosion);
 
 	this->addPlayer(player1);
 	this->addPlayer(player2);
 	this->addPlayer(player3);
+
 }
 
 void Manager::handleEvent(SDL_Event& event) {
@@ -163,6 +166,14 @@ void Manager::update() {
                 auto p{ dynamic_cast<Player*>(e1) };
 
                 hitBullet(p, e0);
+            } else if (id0 == 'p' && id1 == 'x') {
+                auto p{ dynamic_cast<Player*>(e0) };
+
+                this->spawnBulletExplosion(p, e1);
+            } else if (id0 == 'x' && id1 == 'p') {
+                auto p{ dynamic_cast<Player*>(e1) };
+
+                this->spawnBulletExplosion(p, e0);
             }
         }
     }
