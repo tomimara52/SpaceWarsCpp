@@ -21,42 +21,29 @@ int main(int argc, char* args[]) {
 	RenderWindow window{ "Game v1", SCREEN_W, SCREEN_H };
 
 
-	SDL_Texture* rocketTex1 = window.loadTexture("res/gfx/rocket-nice-red.png");
-	SDL_Texture* rocketTex2 = window.loadTexture("res/gfx/rocket-nice-green.png");
 
-    SDL_Texture* powerupTex = window.loadTexture("res/gfx/dead-touch.png");
 
-	Player player1{ 100, 100, 0, rocketTex1};
-	Player player2{ 500, 100, 0, rocketTex2};
-	Player player3{ 100, 300, 0, rocketTex2};
 
-    Powerup deadTouch{ 250, 250, powerupTex, 'd' };
-
-	Manager manager{ window };
-    manager.addCollisionable(&deadTouch);
-    manager.addEntity(&deadTouch);
-
-	manager.addPlayer(&player1);
-	manager.addPlayer(&player2);
-	manager.addPlayer(&player3);
+	Manager* manager = new Manager{ window };
 
 
 	SDL_Event event;
 
-	while (manager.isGameRunning()) {
+	while (manager->isGameRunning()) {
 
-		manager.updateDeltaTime();
+		manager->updateDeltaTime();
 
 		while (SDL_PollEvent(&event)) {
-			manager.handleEvent(event);
+			manager->handleEvent(event);
 		}
 
-		manager.update();
+		manager->update();
 
-		manager.render();
+		manager->render();
 	}
+
+    delete manager;
 	
-	window.cleanUp();
 
     IMG_Quit();
     SDL_Quit();

@@ -5,11 +5,30 @@
 #include "Math.h"
 #include "Constants.h"
 #include "Player.h"
+#include "Powerup.h"
 
 Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
-	  collisionables{ }, deltaTime{ }, prevTime{ }, prevPrevTime{ },
-	  pEvents{ } { }
+	  collisionables{ }, toDestroy{ }, deltaTime{ }, prevTime{ },
+      prevPrevTime{ }, pEvents{ } {
+	SDL_Texture* rocketTex1 = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-red.png");
+	SDL_Texture* rocketTex2 = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-green.png");
+
+    SDL_Texture* powerupTex = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/dead-touch.png");
+
+	Player* player1 = new Player{ 100, 100, 0, rocketTex1};
+	Player* player2 = new Player{ 500, 100, 0, rocketTex2};
+	Player* player3 = new Player{ 100, 300, 0, rocketTex2};
+
+    Powerup* deadTouch = new Powerup{ 250, 250, powerupTex, 'd' };
+
+    this->addCollisionable(deadTouch);
+    this->addEntity(deadTouch);
+
+	this->addPlayer(player1);
+	this->addPlayer(player2);
+	this->addPlayer(player3);
+}
 
 void Manager::handleEvent(SDL_Event& event) {
 	if (event.type == SDL_QUIT)
