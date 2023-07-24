@@ -246,5 +246,5 @@ Manager::~Manager() {
         delete entities.at(i);
     }
 
-	window.cleanUp();
+    window.cleanUp();
 }
