@@ -62,3 +62,7 @@ const CircleCollider* Entity::getCollider() const {
 void Entity::setPos(Vector2<double> newPos) {
     pos = newPos;
 }
+
+Vector2<double> Entity::getPosOffsetApplied() const {
+    return pos;
+}

@@ -18,6 +18,7 @@ public:
     virtual bool collides(Entity* other) const;
     char getId() const;
     virtual const CircleCollider* getCollider() const;
+    virtual Vector2<double> getPosOffsetApplied() const;
 protected:
 	Vector2<double> pos;
 	SDL_Rect currentFrame;
