@@ -297,7 +297,7 @@ void Manager::spawnBulletExplosion(Player* p, Entity* powerup) {
 
     Vector2<double> pos{ powerup->getCollider()->getPosOffsetApplied() };
     for (size_t i{}; i < 8; ++i) {
-        Bullet* bullet = new Bullet{ pos.x , pos.y, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX], Color::red };
+        Bullet* bullet = new Bullet{ pos.x , pos.y, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX], p->getColor() };
         this->addCollisionable(bullet);
         this->addEntity(bullet);
     }
