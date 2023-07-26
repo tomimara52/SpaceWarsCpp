@@ -57,7 +57,7 @@ void Manager::handleEvent(SDL_Event& event) {
 }
 
 void Manager::handleKeyboard() {
-    size_t n_players = players.size();
+    const size_t n_players = players.size();
 	const uint8_t* kbdState{ SDL_GetKeyboardState(NULL) };
 
     if (n_players >= 1 && *(pEvents[0]) & ALIVE) {
@@ -97,7 +97,7 @@ double Manager::updateDeltaTime() {
 	prevPrevTime = prevTime;
 	prevTime = SDL_GetPerformanceCounter();
 
-	double freq = (double)SDL_GetPerformanceFrequency();
+	const double freq = (double)SDL_GetPerformanceFrequency();
 	
 	deltaTime = (prevTime - prevPrevTime) / freq;
 
@@ -139,8 +139,8 @@ void Manager::update() {
         for (size_t j{ i+1 }; j < collisionables.size(); ++j) {
             Entity* e1{ collisionables[j] };
 
-            char id0{ e0->getId() };
-            char id1{ e1->getId() };
+            const char id0{ e0->getId() };
+            const char id1{ e1->getId() };
 
             if (!(e0->collides(e1)))
                 continue;
@@ -237,21 +237,21 @@ void Manager::playersCollide(Player* p0, Player* p1) {
         killPlayer(p0);
     }
 
-    Vector2<double> m0{ p0->getMomentum() };            
-    Vector2<double> m1{ p1->getMomentum() };            
-    Vector2<double> pos0{ p0->getPos() };            
-    Vector2<double> pos1{ p1->getPos() };            
-    double radius{ p0->getCollider()->getRadius() };
+    const Vector2<double> m0{ p0->getMomentum() };            
+    const Vector2<double> m1{ p1->getMomentum() };            
+    const Vector2<double> pos0{ p0->getPos() };            
+    const Vector2<double> pos1{ p1->getPos() };            
+    const double radius{ p0->getCollider()->getRadius() };
 
     Vector2<double> dist{ pos0 - pos1 };
-    Vector2<double> radiusVec{ dist * (1 / dist.norm()) * radius };
+    const Vector2<double> radiusVec{ dist * (1 / dist.norm()) * radius };
     Vector2<double> correction{ dist - radiusVec * 2 };
     correction = correction * 0.5;
 
     p0->setPos(pos0 - correction);
     p1->setPos(pos1 + correction);
 
-    double vel{ (m0 - m1).norm() };
+    const double vel{ (m0 - m1).norm() };
     dist.normalize();
 
     p0->setMomentum(m0 + dist * vel);
@@ -287,7 +287,7 @@ Manager::~Manager() {
 }
 
 void Manager::hitBullet(Player* p, Entity* bullet) {
-    auto bulletBullet = dynamic_cast<Bullet*>(bullet);
+    const auto bulletBullet = dynamic_cast<Bullet*>(bullet);
     if (p->getColor() != bulletBullet->getColor()) {
         (this->toDestroy).push_back(bullet);
 
@@ -298,7 +298,7 @@ void Manager::hitBullet(Player* p, Entity* bullet) {
 void Manager::spawnBulletExplosion(Player* p, Entity* powerup) {
     toDestroy.push_back(powerup);
 
-    Vector2<double> pos{ powerup->getCollider()->getPosOffsetApplied() };
+    const Vector2<double> pos{ powerup->getCollider()->getPosOffsetApplied() };
     for (size_t i{}; i < 8; ++i) {
         Bullet* bullet = new Bullet{ pos.x , pos.y, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX], p->getColor() };
         this->addCollisionable(bullet);
