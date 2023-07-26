@@ -8,9 +8,10 @@
 #include "Entity.h"
 #include "Math.h"
 
-Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex)
+Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex, SDL_Texture* backTex)
 	: Entity(p_x, p_y, tex, 'p'), dir{ dir }, momentum{}, events{ ALIVE },
-      collider{ CircleCollider{ &pos, Vector2<double>{ 32, 32 }, 26 } } {
+      collider{ CircleCollider{ &pos, Vector2<double>{ 32, 32 }, 26 } },
+      backTex{ backTex } {
     currentFrame.h = 64;
     currentFrame.w = 64;
 }

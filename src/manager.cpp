@@ -12,6 +12,7 @@ static const int P0_TEX = 0;
 static const int P1_TEX = 1;
 static const int DEAD_TOUCH_TEX = 2;
 static const int BULLET_TEX = 3;
+static const int P_BACK_TEX = 0;
 
 Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
@@ -22,9 +23,9 @@ Manager::Manager(RenderWindow window)
     textures[DEAD_TOUCH_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/dead-touch.png");
     textures[BULLET_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/circle-red.png");
 
-	Player* player1 = new Player{ 100, 100, 0, textures[P0_TEX]};
-	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX]};
-	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX]};
+	Player* player1 = new Player{ 100, 100, 0, textures[P0_TEX], textures[P_BACK_TEX]};
+	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX], textures[P_BACK_TEX]};
+	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX], textures[P_BACK_TEX]};
 
     Powerup* bExplosion = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'x' };
 

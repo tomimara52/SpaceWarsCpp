@@ -9,7 +9,7 @@
 
 class Player : public Entity {
 public:
-	Player(double p_x, double p_y, double dir, SDL_Texture* tex);
+	Player(double p_x, double p_y, double dir, SDL_Texture* tex, SDL_Texture* backTex);
 
 	void simulate(double deltaTime) override;
 
@@ -41,5 +41,7 @@ private:
     CircleCollider collider;
 
     double deadTouchTime; 
+
+    SDL_Texture* backTex;
 };
 
