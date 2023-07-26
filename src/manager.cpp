@@ -136,6 +136,11 @@ void Manager::addCollisionable(Entity* e) {
 }
 
 void Manager::update() {
+    /*
+    std::cout << "Players: " << players.size() << "|\t";
+    std::cout << "Entities: " << entities.size() << "|\t";
+    std::cout << "Collisionables: " << collisionables.size() << "\n";
+    */
 	this->handleKeyboard();
 
 	for (Entity* e : entities) {
