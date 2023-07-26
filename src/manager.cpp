@@ -287,9 +287,12 @@ Manager::~Manager() {
 }
 
 void Manager::hitBullet(Player* p, Entity* bullet) {
-    (this->toDestroy).push_back(bullet);
+    auto bulletBullet = dynamic_cast<Bullet*>(bullet);
+    if (p->getColor() != bulletBullet->getColor()) {
+        (this->toDestroy).push_back(bullet);
 
-    killPlayer(p);
+        killPlayer(p);
+    }
 }
 
 void Manager::spawnBulletExplosion(Player* p, Entity* powerup) {
