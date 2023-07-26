@@ -29,7 +29,7 @@ Manager::Manager(RenderWindow window)
 	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX], textures[P_BACK_TEX], Color::green };
 	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX], textures[P_BACK_TEX], Color::green };
 
-    //Powerup* bExplosion = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'x' };
+    Powerup* bExplosion = new Powerup{ 400 , 250, textures[DEAD_TOUCH_TEX], 'x' };
     Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };
 
     /*
@@ -39,6 +39,8 @@ Manager::Manager(RenderWindow window)
         this->addEntity(bullet);
     }
     */
+    this->addCollisionable(bExplosion);
+    this->addEntity(bExplosion);
 
     this->addCollisionable(deadTouch);
     this->addEntity(deadTouch);
@@ -295,7 +297,7 @@ void Manager::spawnBulletExplosion(Player* p, Entity* powerup) {
 
     Vector2<double> pos{ powerup->getCollider()->getPosOffsetApplied() };
     for (size_t i{}; i < 8; ++i) {
-        Bullet* bullet = new Bullet{ pos.x , pos.y, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX]};
+        Bullet* bullet = new Bullet{ pos.x , pos.y, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX], Color::red };
         this->addCollisionable(bullet);
         this->addEntity(bullet);
     }

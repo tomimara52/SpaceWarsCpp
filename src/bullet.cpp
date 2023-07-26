@@ -4,11 +4,12 @@
 
 #include "Bullet.h"
 #include "CircleCollider.h"
+#include "Color.h"
 
-Bullet::Bullet(double x, double y, double dir, double speed, SDL_Texture *tex)
+Bullet::Bullet(double x, double y, double dir, double speed, SDL_Texture *tex, Color color)
     : Entity(x, y, tex, 'b'),
       collider{ CircleCollider{ &pos, Vector2<double>{ 5, 5 }, 5 } },
-      dir{ dir }, speed{ speed } {
+      dir{ dir }, speed{ speed }, color{ color } {
     currentFrame.x = 6;
     currentFrame.y = 6;
     currentFrame.h = 10;
