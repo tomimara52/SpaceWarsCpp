@@ -2,8 +2,8 @@
 
 #include <cstdint>
 
-const int SCREEN_W = 500;
-const int SCREEN_H = 500;
+const int SCREEN_W = 1300;
+const int SCREEN_H = 600;
 
 const uint_fast8_t ALIVE =         0b00000001;
 const uint_fast8_t FORWARD =       0b00000010;
