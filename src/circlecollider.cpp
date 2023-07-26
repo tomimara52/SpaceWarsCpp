@@ -7,10 +7,10 @@ CircleCollider::CircleCollider(Vector2<double>* pos, Vector2<double> offset, dou
     : pos{ pos }, offset{ offset }, radius{ radius } { }
 
 bool CircleCollider::collides(const CircleCollider* other) const {
-    Vector2<double> otherPos = other->getPosOffsetApplied();
-    Vector2<double> pos = this->getPosOffsetApplied();
+    const Vector2<double> otherPos = other->getPosOffsetApplied();
+    const Vector2<double> pos = this->getPosOffsetApplied();
 
-    double distance = sqrt((pos.x - otherPos.x) * (pos.x - otherPos.x) + (pos.y - otherPos.y) * (pos.y - otherPos.y));
+    const double distance = sqrt((pos.x - otherPos.x) * (pos.x - otherPos.x) + (pos.y - otherPos.y) * (pos.y - otherPos.y));
 
     return radius + other->getRadius() >= distance;
 }
