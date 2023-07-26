@@ -33,6 +33,8 @@ public:
     void addToEvents(uint_fast8_t newEvent);
 
     void setDeadTouchTime();
+
+    const Color getColor() const;
 private:
 	void move(double deltaTime);
 

@@ -153,3 +153,7 @@ void Player::addToEvents(uint_fast8_t newEvent) {
 void Player::setDeadTouchTime() {
     deadTouchTime = DEAD_TOUCH_TIME;
 }
+
+const Color Player::getColor() const {
+    return color;
+}
