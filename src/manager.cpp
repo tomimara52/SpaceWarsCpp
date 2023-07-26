@@ -9,8 +9,10 @@
 #include "Bullet.h"
 #include "Color.h"
 
-static const int P0_TEX = 0;
-static const int P1_TEX = 1;
+static const int P_RED_TEX = 0;
+static const int P_GREEN_TEX = 1;
+static const int P_BLUE_TEX = 5;
+static const int P_YELLOW_TEX = 6;
 static const int DEAD_TOUCH_TEX = 2;
 static const int BULLET_TEX = 3;
 static const int P_BACK_TEX = 4;
@@ -19,15 +21,18 @@ Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
 	  collisionables{ }, toDestroy{ }, deltaTime{ }, prevTime{ },
       prevPrevTime{ }, pEvents{ } {
-	textures[P0_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-red.png");
-	textures[P1_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-green.png");
+	textures[P_RED_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-red.png");
+	textures[P_GREEN_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-green.png");
+	textures[P_BLUE_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-blue.png");
+	textures[P_YELLOW_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-yellow.png");
     textures[DEAD_TOUCH_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/dead-touch.png");
     textures[BULLET_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/bullet.png");
     textures[P_BACK_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-back.png");
 
-	Player* player1 = new Player{ 100, 100, 0, textures[P0_TEX], textures[P_BACK_TEX], Color::red };
-	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX], textures[P_BACK_TEX], Color::green };
-	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX], textures[P_BACK_TEX], Color::green };
+	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red };
+	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green };
+	Player* player3 = new Player{ 100, 300, 0, textures[P_BLUE_TEX], textures[P_BACK_TEX], Color::blue };
+	Player* player4 = new Player{ 500, 300, 0, textures[P_YELLOW_TEX], textures[P_BACK_TEX], Color::yellow };
 
     Powerup* bExplosion = new Powerup{ 400 , 250, textures[DEAD_TOUCH_TEX], 'x' };
     Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };
@@ -48,6 +53,7 @@ Manager::Manager(RenderWindow window)
 	this->addPlayer(player1);
 	this->addPlayer(player2);
 	this->addPlayer(player3);
+	this->addPlayer(player4);
 
 }
 
