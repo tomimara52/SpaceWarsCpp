@@ -15,6 +15,8 @@ public:
     bool collides(Entity* other) const override;
 
 	void simulate(double deltaTime) override;
+
+    const Color getColor() const;
 private:
     CircleCollider collider;
     const double dir;

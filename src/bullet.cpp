@@ -32,3 +32,7 @@ void Bullet::simulate(double deltaTime) {
     pos.x += cos(dir) * speed * deltaTime;
     pos.y += sin(dir) * speed * deltaTime;
 }
+
+const Color Bullet::getColor() const {
+    return color;
+}
