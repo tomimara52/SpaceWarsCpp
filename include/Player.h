@@ -3,13 +3,14 @@
 #include <SDL2/SDL_image.h>
 #include <cstdint>
 
+#include "Color.h"
 #include "Math.h"
 #include "Entity.h"
 #include "CircleCollider.h"
 
 class Player : public Entity {
 public:
-	Player(double p_x, double p_y, double dir, SDL_Texture* tex, SDL_Texture* backTex);
+	Player(double p_x, double p_y, double dir, SDL_Texture* tex, SDL_Texture* backTex, Color color);
 
 	void simulate(double deltaTime) override;
 
@@ -43,5 +44,7 @@ private:
     double deadTouchTime; 
 
     SDL_Texture* backTex;
+
+    const Color color;
 };
 

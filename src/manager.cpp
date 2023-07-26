@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Powerup.h"
 #include "Bullet.h"
+#include "Color.h"
 
 static const int P0_TEX = 0;
 static const int P1_TEX = 1;
@@ -24,9 +25,9 @@ Manager::Manager(RenderWindow window)
     textures[BULLET_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/circle-red.png");
     textures[P_BACK_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-back.png");
 
-	Player* player1 = new Player{ 100, 100, 0, textures[P0_TEX], textures[P_BACK_TEX]};
-	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX], textures[P_BACK_TEX]};
-	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX], textures[P_BACK_TEX]};
+	Player* player1 = new Player{ 100, 100, 0, textures[P0_TEX], textures[P_BACK_TEX], Color::red };
+	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX], textures[P_BACK_TEX], Color::green };
+	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX], textures[P_BACK_TEX], Color::green };
 
     //Powerup* bExplosion = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'x' };
     Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };

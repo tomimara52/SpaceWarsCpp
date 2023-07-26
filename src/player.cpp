@@ -7,11 +7,12 @@
 #include "Player.h"
 #include "Entity.h"
 #include "Math.h"
+#include "Color.h"
 
-Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex, SDL_Texture* backTex)
+Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex, SDL_Texture* backTex, Color color)
 	: Entity(p_x, p_y, tex, 'p'), dir{ dir }, momentum{}, events{ ALIVE },
       collider{ CircleCollider{ &pos, Vector2<double>{ 32, 32 }, 26 } },
-      backTex{ backTex } {
+      backTex{ backTex }, color{ color } {
     currentFrame.h = 64;
     currentFrame.w = 64;
 }
