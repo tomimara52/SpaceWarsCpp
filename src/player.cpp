@@ -157,3 +157,7 @@ void Player::setDeadTouchTime() {
 const Color Player::getColor() const {
     return color;
 }
+
+Vector2<double> Player::getPosOffsetApplied() const {
+    return collider.getPosOffsetApplied();
+}

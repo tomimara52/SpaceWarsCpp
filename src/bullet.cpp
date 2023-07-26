@@ -61,3 +61,7 @@ void Bullet::render(SDL_Renderer* renderer) const {
      SDL_SetTextureColorMod(tex, r, g, b);
      SDL_RenderCopyEx(renderer, tex, &src, &dst, dirRender, NULL, SDL_FLIP_NONE);
 }
+
+Vector2<double> Bullet::getPosOffsetApplied() const {
+    return collider.getPosOffsetApplied();
+}

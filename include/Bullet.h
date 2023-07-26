@@ -19,6 +19,8 @@ public:
     const Color getColor() const;
 
     void render(SDL_Renderer* renderer) const override;
+
+    Vector2<double> getPosOffsetApplied() const override;
 private:
     CircleCollider collider;
     const double dir;

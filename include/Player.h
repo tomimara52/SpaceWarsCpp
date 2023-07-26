@@ -35,6 +35,8 @@ public:
     void setDeadTouchTime();
 
     const Color getColor() const;
+
+    Vector2<double> getPosOffsetApplied() const override;
 private:
 	void move(double deltaTime);
 
