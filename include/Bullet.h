@@ -17,6 +17,8 @@ public:
 	void simulate(double deltaTime) override;
 
     const Color getColor() const;
+
+    void render(SDL_Renderer* renderer) const override;
 private:
     CircleCollider collider;
     const double dir;
