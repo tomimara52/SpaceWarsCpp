@@ -144,6 +144,14 @@ void Manager::update() {
 
     for (size_t i{}; i < collisionables.size(); ++i) {
         Entity* e0{ collisionables[i] };
+
+        const Vector2<double> ePos{ e0->getPos() };
+
+        if (e0->getId() != 'p' && (ePos.x < 0 || ePos.x > SCREEN_W || ePos.y < 0 || ePos.y > SCREEN_H)) {
+            toDestroy.push_back(e0);
+            continue;
+        }
+
         for (size_t j{ i+1 }; j < collisionables.size(); ++j) {
             Entity* e1{ collisionables[j] };
 
