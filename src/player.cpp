@@ -1,6 +1,9 @@
+#define SHOW_MOMENTUM_VECTORS
+
 #include <cstdint>
 #include <cmath>
 #include <algorithm>
+#include <tuple>
 
 #include "CircleCollider.h"
 #include "Constants.h"
@@ -103,7 +106,10 @@ void Player::render(SDL_Renderer* renderer) const {
         dstBack.w = this->getCurrentFrame().w + 10;
         dstBack.h = this->getCurrentFrame().h + 10;
 
-        SDL_SetTextureColorMod(backTex, 255, 0, 0);
+        unsigned int r, g, b;
+        std::tie(r, g, b) = getHexColor(color);
+
+        SDL_SetTextureColorMod(backTex, r, g, b);
         SDL_RenderCopyEx(renderer, backTex, &src, &dstBack, dirRender, NULL, SDL_FLIP_NONE);
     }
 
