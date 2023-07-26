@@ -91,12 +91,6 @@ void Manager::handleKeyboard() {
 }
 
 double Manager::updateDeltaTime() {
-    if (prevTime == 0 && prevPrevTime == 0) {
-        prevTime = SDL_GetPerformanceCounter();
-        deltaTime = 0;
-        return 0;
-    }
-    
 	prevPrevTime = prevTime;
 	prevTime = SDL_GetPerformanceCounter();
 
