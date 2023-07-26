@@ -39,13 +39,6 @@ Manager::Manager(RenderWindow window)
     Powerup* bExplosion = new Powerup{ 400 , 250, textures[B_EXPLOSION_TEX], 'x' };
     Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };
 
-    /*
-    for (size_t i{}; i < 8; ++i) {
-        Bullet* bullet = new Bullet{ 250, 250, (PI*i)/4, BULLET_SPEED_0 , textures[BULLET_TEX]};
-        this->addCollisionable(bullet);
-        this->addEntity(bullet);
-    }
-    */
     this->addCollisionable(bExplosion);
     this->addEntity(bExplosion);
 
