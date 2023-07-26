@@ -60,5 +60,5 @@ private:
 	uint64_t prevPrevTime;
     std::vector<uint_fast8_t*> pEvents;
 
-    SDL_Texture* textures[4];
+    SDL_Texture* textures[5];
 };
