@@ -7,3 +7,5 @@ enum Color {
     blue,
     yellow
 };
+
+std::tuple<unsigned int, unsigned int, unsigned int> getHexColor(Color color);
