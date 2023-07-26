@@ -38,7 +38,7 @@ void Player::simulate(double deltaTime) {
 
 void Player::move(double deltaTime) {
 	if (events & FORWARD) {
-		Vector2<double> dirVector{ cos(dir), sin(dir) };
+		const Vector2<double> dirVector{ cos(dir), sin(dir) };
 
         momentum += dirVector * ACCELERATION * deltaTime;
 
