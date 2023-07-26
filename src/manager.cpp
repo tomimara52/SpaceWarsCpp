@@ -145,9 +145,9 @@ void Manager::update() {
     for (size_t i{}; i < collisionables.size(); ++i) {
         Entity* e0{ collisionables[i] };
 
-        const Vector2<double> ePos{ e0->getPos() };
+        const Vector2<double> ePos{ e0->getPosOffsetApplied() };
 
-        if (e0->getId() != 'p' && (ePos.x < 0 || ePos.x > SCREEN_W || ePos.y < 0 || ePos.y > SCREEN_H)) {
+        if (ePos.x < 0 || ePos.x > SCREEN_W || ePos.y < 0 || ePos.y > SCREEN_H) {
             toDestroy.push_back(e0);
             continue;
         }
