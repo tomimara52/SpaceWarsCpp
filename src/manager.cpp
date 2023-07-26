@@ -22,14 +22,14 @@ Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
 	  collisionables{ }, toDestroy{ }, deltaTime{ }, prevTime{ },
       prevPrevTime{ }, pEvents{ } {
-	textures[P_RED_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-red.png");
-	textures[P_GREEN_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-green.png");
-	textures[P_BLUE_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-blue.png");
-	textures[P_YELLOW_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-yellow.png");
-    textures[DEAD_TOUCH_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/dead-touch.png");
-    textures[BULLET_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/bullet.png");
-    textures[P_BACK_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-back.png");
-    textures[B_EXPLOSION_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/bullet-explosion.png");
+	textures[P_RED_TEX] = window.loadTexture("res/gfx/rocket-nice-red.png");
+	textures[P_GREEN_TEX] = window.loadTexture("res/gfx/rocket-nice-green.png");
+	textures[P_BLUE_TEX] = window.loadTexture("res/gfx/rocket-nice-blue.png");
+	textures[P_YELLOW_TEX] = window.loadTexture("res/gfx/rocket-nice-yellow.png");
+    textures[DEAD_TOUCH_TEX] = window.loadTexture("res/gfx/dead-touch.png");
+    textures[BULLET_TEX] = window.loadTexture("res/gfx/bullet.png");
+    textures[P_BACK_TEX] = window.loadTexture("res/gfx/rocket-nice-back.png");
+    textures[B_EXPLOSION_TEX] = window.loadTexture("res/gfx/bullet-explosion.png");
 
 	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red };
 	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green };
