@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 
 #include <cmath>
+#include <tuple>
 
 #include "Bullet.h"
 #include "CircleCollider.h"
@@ -54,5 +55,9 @@ void Bullet::render(SDL_Renderer* renderer) const {
        = (p_dir * (180 / pi)) + 90
      */
 
+     unsigned int r, g, b;
+     std::tie(r, g, b) = getHexColor(color);
+     
+     SDL_SetTextureColorMod(tex, r, g, b);
      SDL_RenderCopyEx(renderer, tex, &src, &dst, dirRender, NULL, SDL_FLIP_NONE);
 }
