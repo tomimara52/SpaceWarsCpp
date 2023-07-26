@@ -22,7 +22,7 @@ Manager::Manager(RenderWindow window)
 	textures[P0_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-red.png");
 	textures[P1_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-green.png");
     textures[DEAD_TOUCH_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/dead-touch.png");
-    textures[BULLET_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/circle-red.png");
+    textures[BULLET_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/bullet.png");
     textures[P_BACK_TEX] = window.loadTexture("/home/tomi/Documents/sdl2-game/res/gfx/rocket-nice-back.png");
 
 	Player* player1 = new Player{ 100, 100, 0, textures[P0_TEX], textures[P_BACK_TEX], Color::red };

@@ -8,12 +8,12 @@
 
 Bullet::Bullet(double x, double y, double dir, double speed, SDL_Texture *tex, Color color)
     : Entity(x, y, tex, 'b'),
-      collider{ CircleCollider{ &pos, Vector2<double>{ 5, 5 }, 5 } },
+      collider{ CircleCollider{ &pos, Vector2<double>{ 8, 6 }, 6 } },
       dir{ dir }, speed{ speed }, color{ color } {
-    currentFrame.x = 6;
-    currentFrame.y = 6;
-    currentFrame.h = 10;
-    currentFrame.w = 10;
+    currentFrame.x = 23;
+    currentFrame.y = 25;
+    currentFrame.h = 14;
+    currentFrame.w = 18;
 }
 
 const CircleCollider* Bullet::getCollider() const {
