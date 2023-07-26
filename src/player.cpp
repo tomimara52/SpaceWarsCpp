@@ -102,9 +102,8 @@ void Player::render(SDL_Renderer* renderer) const {
         dstBack.w = this->getCurrentFrame().w + 10;
         dstBack.h = this->getCurrentFrame().h + 10;
 
-        SDL_SetTextureColorMod(tex, 0, 0, 0);
-        SDL_RenderCopyEx(renderer, tex, &src, &dstBack, dirRender, NULL, SDL_FLIP_NONE);
-        SDL_SetTextureColorMod(tex, 255, 255, 255);
+        SDL_SetTextureColorMod(backTex, 255, 0, 0);
+        SDL_RenderCopyEx(renderer, backTex, &src, &dstBack, dirRender, NULL, SDL_FLIP_NONE);
     }
 
 	SDL_RenderCopyEx(renderer, tex, &src, &dst, dirRender, NULL, SDL_FLIP_NONE);

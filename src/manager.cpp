@@ -28,7 +28,8 @@ Manager::Manager(RenderWindow window)
 	Player* player2 = new Player{ 500, 100, 0, textures[P1_TEX], textures[P_BACK_TEX]};
 	Player* player3 = new Player{ 100, 300, 0, textures[P1_TEX], textures[P_BACK_TEX]};
 
-    Powerup* bExplosion = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'x' };
+    //Powerup* bExplosion = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'x' };
+    Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };
 
     /*
     for (size_t i{}; i < 8; ++i) {
@@ -38,8 +39,8 @@ Manager::Manager(RenderWindow window)
     }
     */
 
-    this->addCollisionable(bExplosion);
-    this->addEntity(bExplosion);
+    this->addCollisionable(deadTouch);
+    this->addEntity(deadTouch);
 
 	this->addPlayer(player1);
 	this->addPlayer(player2);
