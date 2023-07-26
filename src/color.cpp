@@ -12,5 +12,7 @@ std::tuple<unsigned int, unsigned int, unsigned int> getHexColor(Color color) {
         return { 0, 0, 255 };
     case Color::yellow:
         return { 255, 255, 0 };
+    default:
+        return { 0, 0, 0 };
     }
 }
