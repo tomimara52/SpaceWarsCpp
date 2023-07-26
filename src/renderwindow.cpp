@@ -31,7 +31,7 @@ SDL_Texture* RenderWindow::loadTexture(const char* p_filepath) {
 }
 
 void RenderWindow::clear() {
-    SDL_SetRenderDrawColor(renderer, 0x08, 0x0B, 0x53, 255); 
+    SDL_SetRenderDrawColor(renderer, 0x14, 0x12, 0x30, 255); 
 	SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
