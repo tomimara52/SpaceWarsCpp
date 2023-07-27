@@ -30,3 +30,7 @@ bool Powerup::collides(Entity* other) const {
 
     return collider.collides(otherCollider);
 }
+
+Vector2<double> Powerup::getPosOffsetApplied() const {
+    return collider.getPosOffsetApplied();
+}
