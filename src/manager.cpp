@@ -35,13 +35,14 @@ Manager::Manager(RenderWindow window)
 
     std::srand(std::time(NULL));
 
-    updateTimeToNextSpawn();
+    newTimeToNextSpawn();
 
 	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red };
 	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green };
 	Player* player3 = new Player{ 100, 300, 0, textures[P_BLUE_TEX], textures[P_BACK_TEX], Color::blue };
 	Player* player4 = new Player{ 500, 300, 0, textures[P_YELLOW_TEX], textures[P_BACK_TEX], Color::yellow };
 
+    /*
     Powerup* bExplosion = new Powerup{ 400 , 250, textures[B_EXPLOSION_TEX], 'x' };
     Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };
 
@@ -50,6 +51,7 @@ Manager::Manager(RenderWindow window)
 
     this->addCollisionable(deadTouch);
     this->addEntity(deadTouch);
+    */
 
 	this->addPlayer(player1);
 	this->addPlayer(player2);
@@ -143,6 +145,8 @@ void Manager::update() {
 	this->handleKeyboard();
 
     updateDeltaTime();
+
+    maybeSpawn();
 
 	for (Entity* e : entities) {
 		e->simulate(deltaTime);
@@ -328,8 +332,31 @@ void Manager::spawnBulletExplosion(Player* p, Entity* powerup) {
     }
 }
 
-double Manager::updateTimeToNextSpawn() {
+double Manager::newTimeToNextSpawn() {
     timeToNextSpawn = MIN_SPAWN_TIME + static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX/(MAX_SPAWN_TIME - MIN_SPAWN_TIME))));
 
     return timeToNextSpawn;
+}
+
+void Manager::maybeSpawn() {
+    timeToNextSpawn -= deltaTime;
+
+    if (timeToNextSpawn <= 0) {
+        newTimeToNextSpawn();
+
+        const int randInt = std::rand();
+
+        const double posX = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(SCREEN_W))));
+        const double posY = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(SCREEN_H))));
+
+        if (randInt < RAND_MAX / 2) {
+            Powerup* bExplosion = new Powerup{ posX, posY, textures[B_EXPLOSION_TEX], 'x' };
+            addCollisionable(bExplosion);
+            addEntity(bExplosion);
+        } else {
+            Powerup* deadTouch = new Powerup{ posX, posY, textures[DEAD_TOUCH_TEX], 'd' };
+            addCollisionable(deadTouch);
+            addEntity(deadTouch);
+        }
+    }
 }

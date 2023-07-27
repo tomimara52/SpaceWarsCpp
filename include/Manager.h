@@ -49,7 +49,9 @@ private:
 
     void spawnBulletExplosion(Player* p, Entity* powerup);
 
-    double updateTimeToNextSpawn();
+    double newTimeToNextSpawn();
+
+    void maybeSpawn();
 
 	bool gameRunning;
 	RenderWindow window;
