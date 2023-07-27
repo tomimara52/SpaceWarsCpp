@@ -35,8 +35,6 @@ int main(int argc, char* args[]) {
 			manager->handleEvent(event);
 		}
 
-		manager->updateDeltaTime();
-
 		manager->update();
 
 		manager->render();

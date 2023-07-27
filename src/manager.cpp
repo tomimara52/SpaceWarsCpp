@@ -142,6 +142,8 @@ void Manager::update() {
     */
 	this->handleKeyboard();
 
+    updateDeltaTime();
+
 	for (Entity* e : entities) {
 		e->simulate(deltaTime);
 	}
