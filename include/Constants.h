@@ -11,10 +11,10 @@ const uint_fast8_t DEAD_TOUCH =    0b00000100;
 const uint_fast8_t SHOOTER =       0b00001000;
 
 const double DEAD_TOUCH_TIME =     5.0;
-const double SHOOTER_TIME =     9.0;
+const double SHOOTER_TIME =        9.0;
 
-const double SHOOTER_CADENCE = 0.75;
-const double SHOOTER_BULLET_SPEED = 140.0;
+const double SHOOTER_CADENCE = 0.35;
+const double SHOOTER_BULLET_SPEED = 340.0;
 
 const double ACCELERATION = 200.0;
 const double MAX_SPEED = 200.0;
