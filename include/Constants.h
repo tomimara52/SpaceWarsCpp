@@ -14,6 +14,7 @@ const double DEAD_TOUCH_TIME =     5.0;
 const double SHOOTER_TIME =     9.0;
 
 const double SHOOTER_CADENCE = 0.75;
+const double SHOOTER_BULLET_SPEED = 140.0;
 
 const double ACCELERATION = 200.0;
 const double MAX_SPEED = 200.0;
