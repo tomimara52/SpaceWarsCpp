@@ -4,6 +4,7 @@
 #include <cmath>
 #include <algorithm>
 #include <tuple>
+#include <functional>
 
 #include "CircleCollider.h"
 #include "Constants.h"
@@ -11,11 +12,12 @@
 #include "Entity.h"
 #include "Math.h"
 #include "Color.h"
+#include "Bullet.h"
 
-Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex, SDL_Texture* backTex, Color color)
+Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex, SDL_Texture* backTex, Color color, shootFuncType shootFunc)
 	: Entity(p_x, p_y, tex, 'p'), dir{ dir }, momentum{}, events{ ALIVE },
       collider{ CircleCollider{ &pos, Vector2<double>{ 32, 32 }, 26 } },
-      backTex{ backTex }, color{ color } {
+      shootBullet{ shootFunc }, backTex{ backTex }, color{ color } {
     currentFrame.h = 64;
     currentFrame.w = 64;
 }
@@ -42,7 +44,8 @@ void Player::simulate(double deltaTime) {
             shooterTime = 0;
             events = events & (~SHOOTER);
         } else if (nextBulletTime <= 0) {
-            // spawn bullet
+            shootBullet(pos.x, pos.y, dir, color);
+            nextBulletTime = SHOOTER_CADENCE;
         }
     }
 }

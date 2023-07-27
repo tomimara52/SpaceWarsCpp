@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include <ctime>
+#include <functional>
 
 #include "Manager.h"
 #include "Math.h"
@@ -37,11 +38,19 @@ Manager::Manager(RenderWindow window)
 
     newTimeToNextSpawn();
 
-	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red };
-	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green };
-	Player* player3 = new Player{ 100, 300, 0, textures[P_BLUE_TEX], textures[P_BACK_TEX], Color::blue };
-	Player* player4 = new Player{ 500, 300, 0, textures[P_YELLOW_TEX], textures[P_BACK_TEX], Color::yellow };
+    shootFuncType shootBullet{ [this](double x, double y, double dir, Color color) -> void {
+        Bullet* const newBullet = new Bullet(x, y, dir, SHOOTER_BULLET_SPEED, textures[BULLET_TEX], color);
+        this->entities.push_back(newBullet);
+        this->collisionables.push_back(newBullet);
+    } };
 
+	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red, shootBullet };
+	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green, shootBullet };
+	Player* player3 = new Player{ 100, 300, 0, textures[P_BLUE_TEX], textures[P_BACK_TEX], Color::blue, shootBullet };
+	Player* player4 = new Player{ 500, 300, 0, textures[P_YELLOW_TEX], textures[P_BACK_TEX], Color::yellow, shootBullet };
+
+    player1->setShooterTime();
+    player1->addToEvents(SHOOTER);
     /*
     Powerup* bExplosion = new Powerup{ 400 , 250, textures[B_EXPLOSION_TEX], 'x' };
     Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };

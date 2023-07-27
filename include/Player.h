@@ -2,15 +2,19 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <cstdint>
+#include <functional>
 
 #include "Color.h"
 #include "Math.h"
 #include "Entity.h"
 #include "CircleCollider.h"
+#include "Bullet.h"
+
+typedef std::function<void(double, double, double, Color)> shootFuncType;
 
 class Player : public Entity {
 public:
-	Player(double p_x, double p_y, double dir, SDL_Texture* tex, SDL_Texture* backTex, Color color);
+	Player(double p_x, double p_y, double dir, SDL_Texture* tex, SDL_Texture* backTex, Color color, shootFuncType shootFunc);
 
 	void simulate(double deltaTime) override;
 
@@ -51,6 +55,8 @@ private:
 
     double shooterTime;
     double nextBulletTime;
+
+    shootFuncType shootBullet;
 
     SDL_Texture* backTex;
 
