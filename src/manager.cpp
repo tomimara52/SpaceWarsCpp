@@ -20,6 +20,7 @@ static const int DEAD_TOUCH_TEX = 2;
 static const int BULLET_TEX = 3;
 static const int P_BACK_TEX = 4;
 static const int B_EXPLOSION_TEX = 7;
+static const int SHOOTER_TEX = 8;
 
 Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
@@ -33,6 +34,7 @@ Manager::Manager(RenderWindow window)
     textures[BULLET_TEX] = window.loadTexture("res/gfx/bullet.png");
     textures[P_BACK_TEX] = window.loadTexture("res/gfx/rocket-nice-back.png");
     textures[B_EXPLOSION_TEX] = window.loadTexture("res/gfx/bullet-explosion.png");
+    textures[SHOOTER_TEX] = window.loadTexture("res/gfx/shooter.png");
 
     std::srand(std::time(NULL));
 
@@ -49,8 +51,6 @@ Manager::Manager(RenderWindow window)
 	Player* player3 = new Player{ 100, 300, 0, textures[P_BLUE_TEX], textures[P_BACK_TEX], Color::blue, shootBullet };
 	Player* player4 = new Player{ 500, 300, 0, textures[P_YELLOW_TEX], textures[P_BACK_TEX], Color::yellow, shootBullet };
 
-    player1->setShooterTime();
-    player1->addToEvents(SHOOTER);
     /*
     Powerup* bExplosion = new Powerup{ 400 , 250, textures[B_EXPLOSION_TEX], 'x' };
     Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };
@@ -209,6 +209,14 @@ void Manager::update() {
                 auto p{ dynamic_cast<Player*>(e1) };
 
                 this->spawnBulletExplosion(p, e0);
+            } else if (id0 == 'p' && id1 == 's') {
+                auto p{ dynamic_cast<Player*>(e0) };
+
+                this->grabShooter(p, e1);
+            } else if (id0 == 's' && id1 == 'p') {
+                auto p{ dynamic_cast<Player*>(e1) };
+
+                this->grabShooter(p, e0);
             }
         }
     }
@@ -365,14 +373,18 @@ void Manager::maybeSpawn() {
         const double posX = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(SCREEN_W))));
         const double posY = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(SCREEN_H))));
 
-        if (randInt < RAND_MAX / 2) {
+        if (randInt < RAND_MAX / 3) {
             Powerup* const bExplosion = new Powerup{ posX, posY, textures[B_EXPLOSION_TEX], 'x' };
             addCollisionable(bExplosion);
             addEntity(bExplosion);
-        } else {
+        } else if (randInt < RAND_MAX * (2/3)) {
             Powerup* const deadTouch = new Powerup{ posX, posY, textures[DEAD_TOUCH_TEX], 'd' };
             addCollisionable(deadTouch);
             addEntity(deadTouch);
+        } else {
+            Powerup* const shooter = new Powerup{ posX, posY, textures[SHOOTER_TEX], 's' };
+            addCollisionable(shooter);
+            addEntity(shooter);
         }
     }
 }

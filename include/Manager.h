@@ -68,5 +68,5 @@ private:
 
     double timeToNextSpawn;
 
-    SDL_Texture* textures[8];
+    SDL_Texture* textures[9];
 };
