@@ -300,6 +300,13 @@ void Manager::grabDeadTouch(Player* p, Entity* powerup) {
     p->setDeadTouchTime();
 }
 
+void Manager::grabShooter(Player* p, Entity* powerup) {
+    (this->toDestroy).push_back(powerup);
+
+    p->addToEvents(SHOOTER);
+    p->setShooterTime();
+}
+
 Manager::~Manager() {
     const size_t players_size = players.size();
 

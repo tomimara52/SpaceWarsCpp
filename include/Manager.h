@@ -45,6 +45,8 @@ private:
 
     void grabDeadTouch(Player* p, Entity* powerup);
 
+    void grabShooter(Player* p, Entity* powerup);
+
     void hitBullet(Player* p, Entity* bullet);
 
     void spawnBulletExplosion(Player* p, Entity* powerup);
