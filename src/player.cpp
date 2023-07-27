@@ -34,6 +34,17 @@ void Player::simulate(double deltaTime) {
             events = events & (~DEAD_TOUCH);
         }
     }
+
+    if (events & SHOOTER) {
+        shooterTime -= deltaTime;
+        nextBulletTime -= deltaTime;
+        if (shooterTime <= 0) {
+            shooterTime = 0;
+            events = events & (~SHOOTER);
+        } else if (nextBulletTime <= 0) {
+            // spawn bullet
+        }
+    }
 }
 
 void Player::move(double deltaTime) {
