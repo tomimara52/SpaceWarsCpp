@@ -350,11 +350,11 @@ void Manager::maybeSpawn() {
         const double posY = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(SCREEN_H))));
 
         if (randInt < RAND_MAX / 2) {
-            Powerup* bExplosion = new Powerup{ posX, posY, textures[B_EXPLOSION_TEX], 'x' };
+            Powerup* const bExplosion = new Powerup{ posX, posY, textures[B_EXPLOSION_TEX], 'x' };
             addCollisionable(bExplosion);
             addEntity(bExplosion);
         } else {
-            Powerup* deadTouch = new Powerup{ posX, posY, textures[DEAD_TOUCH_TEX], 'd' };
+            Powerup* const deadTouch = new Powerup{ posX, posY, textures[DEAD_TOUCH_TEX], 'd' };
             addCollisionable(deadTouch);
             addEntity(deadTouch);
         }
