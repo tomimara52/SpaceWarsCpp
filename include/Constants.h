@@ -19,3 +19,6 @@ const double FRICTION = 100.0;
 const double BULLET_SPEED_0 = 65.0;
 
 const double PI = 3.14159265358979323846;
+
+const double MAX_SPAWN_TIME = 10;
+const double MIN_SPAWN_TIME = 5;
