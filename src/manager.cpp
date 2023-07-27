@@ -157,8 +157,10 @@ void Manager::update() {
 
     maybeSpawn();
 
-	for (Entity* e : entities) {
-		e->simulate(deltaTime);
+    const size_t entitiesSize = entities.size();
+    
+	for (size_t i{}; i < entitiesSize; ++i) {
+		entities.at(i)->simulate(deltaTime);
 	}
 
     for (size_t i{}; i < collisionables.size(); ++i) {
