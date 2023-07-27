@@ -49,6 +49,8 @@ private:
 
     void spawnBulletExplosion(Player* p, Entity* powerup);
 
+    double updateTimeToNextSpawn();
+
 	bool gameRunning;
 	RenderWindow window;
 	std::vector<Entity*> entities;
@@ -59,6 +61,8 @@ private:
 	uint64_t prevTime;
 	uint64_t prevPrevTime;
     std::vector<uint_fast8_t*> pEvents;
+
+    double timeToNextSpawn;
 
     SDL_Texture* textures[8];
 };

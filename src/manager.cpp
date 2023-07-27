@@ -1,5 +1,7 @@
 #include <SDL2/SDL.h>
 #include <cstdint>
+#include <cstdlib>
+#include <ctime>
 
 #include "Manager.h"
 #include "Math.h"
@@ -30,6 +32,10 @@ Manager::Manager(RenderWindow window)
     textures[BULLET_TEX] = window.loadTexture("res/gfx/bullet.png");
     textures[P_BACK_TEX] = window.loadTexture("res/gfx/rocket-nice-back.png");
     textures[B_EXPLOSION_TEX] = window.loadTexture("res/gfx/bullet-explosion.png");
+
+    std::srand(std::time(NULL));
+
+    updateTimeToNextSpawn();
 
 	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red };
 	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green };
@@ -318,4 +324,10 @@ void Manager::spawnBulletExplosion(Player* p, Entity* powerup) {
         this->addCollisionable(bullet);
         this->addEntity(bullet);
     }
+}
+
+double Manager::updateTimeToNextSpawn() {
+    timeToNextSpawn = MIN_SPAWN_TIME + static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX/(MAX_SPAWN_TIME - MIN_SPAWN_TIME))));
+
+    return timeToNextSpawn;
 }
