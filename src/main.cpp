@@ -31,11 +31,11 @@ int main(int argc, char* args[]) {
 
 	while (manager->isGameRunning()) {
 
-		manager->updateDeltaTime();
-
 		while (SDL_PollEvent(&event)) {
 			manager->handleEvent(event);
 		}
+
+		manager->updateDeltaTime();
 
 		manager->update();
 
