@@ -154,6 +154,11 @@ void Player::setDeadTouchTime() {
     deadTouchTime = DEAD_TOUCH_TIME;
 }
 
+void Player::setShooterTime() {
+    shooterTime = SHOOTER_TIME;
+    nextBulletTime = SHOOTER_CADENCE;
+}
+
 const Color Player::getColor() const {
     return color;
 }

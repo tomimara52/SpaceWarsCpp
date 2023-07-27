@@ -34,6 +34,8 @@ public:
 
     void setDeadTouchTime();
 
+    void setShooterTime();
+
     const Color getColor() const;
 
     Vector2<double> getPosOffsetApplied() const override;
@@ -46,6 +48,9 @@ private:
     CircleCollider collider;
 
     double deadTouchTime; 
+
+    double shooterTime;
+    double nextBulletTime;
 
     SDL_Texture* backTex;
 
