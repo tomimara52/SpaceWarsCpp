@@ -44,7 +44,10 @@ void Player::simulate(double deltaTime) {
             shooterTime = 0;
             events = events & (~SHOOTER);
         } else if (nextBulletTime <= 0) {
-            shootBullet(pos.x, pos.y, dir, color);
+            Vector2<double> bulletPos{ getPosOffsetApplied() };
+            bulletPos += Vector2<double>{ cos(dir), sin(dir) } * collider.getRadius();
+
+            shootBullet(bulletPos.x, bulletPos.y, dir, color);
             nextBulletTime = SHOOTER_CADENCE;
         }
     }
