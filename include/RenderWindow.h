@@ -10,6 +10,7 @@ public:
 	RenderWindow(const char* p_title, int p_w, int p_h);
 	SDL_Texture* loadTexture(const char* p_filepath);
 	SDL_Renderer* getRenderer();
+    SDL_Window* getWindow();
 	void clear();
 	void display();
 	void cleanUp();

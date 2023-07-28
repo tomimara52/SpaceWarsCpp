@@ -48,3 +48,7 @@ void RenderWindow::cleanUp() {
 SDL_Renderer* RenderWindow::getRenderer() {
 	return renderer;
 }
+
+SDL_Window* RenderWindow::getWindow() {
+    return window;
+}
