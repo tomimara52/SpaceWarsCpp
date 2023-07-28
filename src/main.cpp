@@ -3,7 +3,6 @@
 #include <iostream>
 #include <vector>
 
-#include "Constants.h"
 #include "RenderWindow.h"
 #include "Entity.h"
 #include "Player.h"
@@ -18,7 +17,7 @@ int main(int argc, char* args[]) {
 	if (!IMG_Init(IMG_INIT_PNG))
 		std::cout << "IMG_Init FAILED WITH ERROR: " << SDL_GetError() << "\n";
 
-	RenderWindow window{ "Game v1", SCREEN_W, SCREEN_H };
+	RenderWindow window{ "Game v1" };
 
 
 
