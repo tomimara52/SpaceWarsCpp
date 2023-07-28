@@ -175,7 +175,7 @@ void Manager::update() {
 
         const Vector2<double> ePos{ e0->getPosOffsetApplied() };
 
-        if (ePos.x < 0 || ePos.x > SCREEN_W || ePos.y < 0 || ePos.y > SCREEN_H) {
+        if (ePos.x < 0 || ePos.x > screen_w || ePos.y < 0 || ePos.y > screen_h) {
             toDestroy.push_back(e0);
             continue;
         }
@@ -379,8 +379,8 @@ void Manager::maybeSpawn() {
 
         const int randInt = std::rand();
 
-        const double posX = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(SCREEN_W))));
-        const double posY = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(SCREEN_H))));
+        const double posX = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(screen_w))));
+        const double posY = static_cast<double>(std::rand() / (static_cast<double>(RAND_MAX / static_cast<double>(screen_h))));
 
         if (randInt < static_cast<double>(RAND_MAX) / 3.0) {
             Powerup* const bExplosion = new Powerup{ posX, posY, textures[B_EXPLOSION_TEX], 'x' };
