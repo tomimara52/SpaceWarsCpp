@@ -70,8 +70,13 @@ Manager::Manager(RenderWindow window)
 }
 
 void Manager::handleEvent(SDL_Event& event) {
-	if (event.type == SDL_QUIT)
+	if (event.type == SDL_QUIT) {
 		gameRunning = false;
+    } else if (event.type == SDL_WINDOWEVENT) {
+        if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+            std::cout << "Window resized to " << event.window.data1 << 'x' << event.window.data2 << '\n';
+        }
+    }
 }
 
 void Manager::handleKeyboard() {
