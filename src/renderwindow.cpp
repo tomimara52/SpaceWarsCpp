@@ -11,7 +11,7 @@
 RenderWindow::RenderWindow(const char* p_title) 
 	: window{ NULL }, renderer{ NULL } {
 
-	window = SDL_CreateWindow(p_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED);
+	window = SDL_CreateWindow(p_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 500, 500, SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED);
 
 	if (window == NULL)
 		std::cout << "Window failed to initialize with error: "
