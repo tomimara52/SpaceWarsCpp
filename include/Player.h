@@ -14,7 +14,7 @@ typedef std::function<void(double, double, double, Color)> shootFuncType;
 
 class Player : public Entity {
 public:
-	Player(double p_x, double p_y, double dir, SDL_Texture* tex, SDL_Texture* backTex, Color color, shootFuncType shootFunc);
+	Player(double p_x, double p_y, double dir, SDL_Texture* tex, SDL_Texture* backTex, Color color, shootFuncType shootFunc, int* screen_w, int* screen_h);
 
 	void simulate(double deltaTime) override;
 
@@ -61,5 +61,8 @@ private:
     SDL_Texture* backTex;
 
     const Color color;
+
+    int* const screen_w;
+    int* const screen_h;
 };
 

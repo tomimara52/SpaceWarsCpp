@@ -36,6 +36,8 @@ Manager::Manager(RenderWindow window)
     textures[B_EXPLOSION_TEX] = window.loadTexture("res/gfx/bullet-explosion.png");
     textures[SHOOTER_TEX] = window.loadTexture("res/gfx/shooter.png");
 
+    SDL_GetWindowSize(window.getWindow(), &screen_w, &screen_h);
+
     std::srand(std::time(NULL));
 
     newTimeToNextSpawn();
@@ -46,10 +48,10 @@ Manager::Manager(RenderWindow window)
         this->collisionables.push_back(newBullet);
     } };
 
-	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red, shootBullet };
-	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green, shootBullet };
-	Player* player3 = new Player{ 100, 300, 0, textures[P_BLUE_TEX], textures[P_BACK_TEX], Color::blue, shootBullet };
-	Player* player4 = new Player{ 500, 300, 0, textures[P_YELLOW_TEX], textures[P_BACK_TEX], Color::yellow, shootBullet };
+	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red, shootBullet, &screen_w, &screen_h };
+	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green, shootBullet, &screen_w, &screen_h };
+	Player* player3 = new Player{ 100, 300, 0, textures[P_BLUE_TEX], textures[P_BACK_TEX], Color::blue, shootBullet, &screen_w, &screen_h };
+	Player* player4 = new Player{ 500, 300, 0, textures[P_YELLOW_TEX], textures[P_BACK_TEX], Color::yellow, shootBullet, &screen_w, &screen_h };
 
     /*
     Powerup* bExplosion = new Powerup{ 400 , 250, textures[B_EXPLOSION_TEX], 'x' };

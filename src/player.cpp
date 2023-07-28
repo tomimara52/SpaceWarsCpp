@@ -14,10 +14,11 @@
 #include "Color.h"
 #include "Bullet.h"
 
-Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex, SDL_Texture* backTex, Color color, shootFuncType shootFunc)
+Player::Player(double p_x, double p_y, double dir, SDL_Texture *tex, SDL_Texture* backTex, Color color, shootFuncType shootFunc, int* screen_w, int* screen_h)
 	: Entity(p_x, p_y, tex, 'p'), dir{ dir }, momentum{}, events{ ALIVE },
       collider{ CircleCollider{ &pos, Vector2<double>{ 32, 32 }, 26 } },
-      shootBullet{ shootFunc }, backTex{ backTex }, color{ color } {
+      shootBullet{ shootFunc }, backTex{ backTex }, color{ color },
+      screen_w{ screen_w }, screen_h{ screen_h } {
     currentFrame.h = 64;
     currentFrame.w = 64;
 }
@@ -85,15 +86,15 @@ void Player::move(double deltaTime) {
 	}
     pos += momentum * deltaTime;
 
-    if (pos.x + 32 > SCREEN_W)
-        pos.x -= SCREEN_W;
+    if (pos.x + 32 > *screen_w)
+        pos.x -= *screen_w;
     else if (pos.x + 32 < 0)
-        pos.x += SCREEN_W;
+        pos.x += *screen_w;
 
-    if (pos.y + 32 > SCREEN_H)
-        pos.y -= SCREEN_H;
+    if (pos.y + 32 > *screen_h)
+        pos.y -= *screen_h;
     else if (pos.y + 32 < 0)
-        pos.y += SCREEN_H;
+        pos.y += *screen_h;
 }
 
 double Player::getDir() const {
