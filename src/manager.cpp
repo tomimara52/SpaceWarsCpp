@@ -24,7 +24,7 @@ static const int SHOOTER_TEX = 8;
 
 Manager::Manager(RenderWindow window)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
-	  collisionables{ }, toDestroy{ }, deltaTime{ }, prevTime{ },
+	  playersAlive{}, collisionables{ }, toDestroy{ }, deltaTime{ }, prevTime{ },
       prevPrevTime{ }, pEvents{ } {
 	textures[P_RED_TEX] = window.loadTexture("res/gfx/rocket-nice-red.png");
 	textures[P_GREEN_TEX] = window.loadTexture("res/gfx/rocket-nice-green.png");
@@ -143,6 +143,7 @@ void Manager::addEntity(Entity* e) {
 }
 
 void Manager::addPlayer(Player* p) {
+    ++playersAlive;
 	players.push_back(p);
     this->addEntity(p);
     this->addCollisionable(p);
@@ -159,6 +160,11 @@ void Manager::update() {
     std::cout << "Entities: " << entities.size() << "|\t";
     std::cout << "Collisionables: " << collisionables.size() << "\n";
     */
+    if (playersAlive == 1) {
+        std::cout << "GAME FINISHED\n";
+        gameRunning = false;
+    }
+
 	this->handleKeyboard();
 
     updateDeltaTime();
@@ -257,6 +263,8 @@ void Manager::render() {
 }
 
 void Manager::killPlayer(Player* p) {
+    --playersAlive;
+    
     p->setEvents(0);
 
     this->removeEntity(p);

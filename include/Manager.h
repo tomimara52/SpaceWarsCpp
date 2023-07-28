@@ -59,6 +59,7 @@ private:
 	RenderWindow window;
 	std::vector<Entity*> entities;
 	std::vector<Player*> players;
+    int playersAlive;
 	std::vector<Entity*> collisionables;
 	std::vector<Entity*> toDestroy;
 	double deltaTime;
