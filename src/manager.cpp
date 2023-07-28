@@ -76,7 +76,8 @@ void Manager::handleEvent(SDL_Event& event) {
 		gameRunning = false;
     } else if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
-            std::cout << "Window resized to " << event.window.data1 << 'x' << event.window.data2 << '\n';
+            screen_w = event.window.data1;
+            screen_h = event.window.data2;
         }
     }
 }
