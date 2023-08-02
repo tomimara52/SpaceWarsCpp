@@ -161,7 +161,7 @@ void Manager::update() {
     std::cout << "Collisionables: " << collisionables.size() << "\n";
     */
     if (playersAlive == 1) {
-        std::cout << "GAME FINISHED\n";
+        announceWinner();
         gameRunning = false;
     }
 
@@ -403,6 +403,32 @@ void Manager::maybeSpawn() {
             Powerup* const shooter = new Powerup{ posX, posY, textures[SHOOTER_TEX], 's' };
             addCollisionable(shooter);
             addEntity(shooter);
+        }
+    }
+}
+
+void Manager::announceWinner() {
+    const size_t playersSize{ players.size() };
+    for (size_t i{}; playersSize > i; ++i) { 
+        Player* p{ players.at(i) };
+
+        if (*(p->getEvents()) & ALIVE) {
+            switch (p->getColor()) {
+            case Color::red:
+                std::cout << "Red ";
+                break;
+            case Color::blue:
+                std::cout << "Blue ";
+                break;
+            case Color::green:
+                std::cout << "Green ";
+                break;
+            case Color::yellow:
+                std::cout << "Yellow ";
+                break;
+            }
+
+            std::cout << "player won!\n";
         }
     }
 }

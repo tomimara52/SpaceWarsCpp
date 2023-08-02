@@ -55,6 +55,8 @@ private:
 
     void maybeSpawn();
 
+    void announceWinner();
+
 	bool gameRunning;
 	RenderWindow window;
 	std::vector<Entity*> entities;
