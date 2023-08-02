@@ -10,7 +10,7 @@
 
 class Manager {
 public:
-	Manager(RenderWindow window);
+	Manager(RenderWindow window, size_t nPlayers);
 
 	void handleEvent(SDL_Event&);
 

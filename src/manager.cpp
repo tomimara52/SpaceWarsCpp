@@ -22,7 +22,7 @@ static const int P_BACK_TEX = 4;
 static const int B_EXPLOSION_TEX = 7;
 static const int SHOOTER_TEX = 8;
 
-Manager::Manager(RenderWindow window)
+Manager::Manager(RenderWindow window, size_t nPlayers)
 	: gameRunning{ true }, window{ window }, entities{ }, players{ }, 
 	  playersAlive{}, collisionables{ }, toDestroy{ }, deltaTime{ }, prevTime{ },
       prevPrevTime{ }, pEvents{ } {
@@ -48,26 +48,17 @@ Manager::Manager(RenderWindow window)
         this->collisionables.push_back(newBullet);
     } };
 
-	Player* player1 = new Player{ 100, 100, 0, textures[P_RED_TEX], textures[P_BACK_TEX], Color::red, shootBullet, &screen_w, &screen_h };
-	Player* player2 = new Player{ 500, 100, 0, textures[P_GREEN_TEX], textures[P_BACK_TEX], Color::green, shootBullet, &screen_w, &screen_h };
-	Player* player3 = new Player{ 100, 300, 0, textures[P_BLUE_TEX], textures[P_BACK_TEX], Color::blue, shootBullet, &screen_w, &screen_h };
-	Player* player4 = new Player{ 500, 300, 0, textures[P_YELLOW_TEX], textures[P_BACK_TEX], Color::yellow, shootBullet, &screen_w, &screen_h };
+    const Color colors[]{ Color::red, Color::blue, Color::yellow, Color::green };
+    const std::tuple<double, double> positions[]{ {100, 100}, {500, 100}, {100, 300}, {500, 300} };
+    SDL_Texture* const pTextures[]{ textures[P_RED_TEX], textures[P_BLUE_TEX], textures[P_YELLOW_TEX], textures[P_GREEN_TEX] };
 
-    /*
-    Powerup* bExplosion = new Powerup{ 400 , 250, textures[B_EXPLOSION_TEX], 'x' };
-    Powerup* deadTouch = new Powerup{ 250, 250, textures[DEAD_TOUCH_TEX], 'd' };
+    for (size_t i{}; i < nPlayers; ++i) {
+        double xPos{ std::get<0>(positions[i]) };
+        double yPos{ std::get<1>(positions[i]) };
+        Player* p = new Player{ xPos, yPos, 0, pTextures[i], textures[P_BACK_TEX], colors[i], shootBullet, &screen_w, &screen_h };
 
-    this->addCollisionable(bExplosion);
-    this->addEntity(bExplosion);
-
-    this->addCollisionable(deadTouch);
-    this->addEntity(deadTouch);
-    */
-
-	this->addPlayer(player1);
-	this->addPlayer(player2);
-	this->addPlayer(player3);
-	this->addPlayer(player4);
+        addPlayer(p);
+    }
 
 }
 

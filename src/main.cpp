@@ -20,10 +20,7 @@ int main(int argc, char* args[]) {
 	RenderWindow window{ "Game v1" };
 
 
-
-
-
-	Manager* manager = new Manager{ window };
+	Manager* manager = new Manager{ window, 4 };
 
 
 	SDL_Event event;
